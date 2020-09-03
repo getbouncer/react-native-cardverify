@@ -1,6 +1,6 @@
 rootProject.name = 'example'
 
-include ':react-native-cardscan'
-project(':react-native-cardscan').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-cardscan/android')
+include ':react-native-cardverify'
+project(':react-native-cardverify').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-cardverify/android')
 
 include ':app'

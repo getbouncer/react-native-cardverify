@@ -8,11 +8,11 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 
-public class RNCardscanPackage implements ReactPackage {
+public class RNCardVerifyPackage implements ReactPackage {
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Collections.<NativeModule>singletonList(new RNCardscanModule(reactContext));
+        return Collections.<NativeModule>singletonList(new RNCardVerifyModule(reactContext));
     }
 
     @Override

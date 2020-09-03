@@ -1,19 +1,19 @@
 {
-  "name": "react-native-cardscan-example",
-  "title": "React Native CardScan Example",
+  "name": "react-native-cardverify-example",
+  "title": "React Native CardVerify Example",
   "version": "0.0.1",
-  "description": "This app demonstrates the capabilites of the react-native-cardscan library.",
+  "description": "This app demonstrates the capabilites of the react-native-cardverify library.",
   "private": true,
   "scripts": {
     "preinstall": "npm pack ..",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "postinstall": "node ../scripts/examples_postinstall.js node_modules/react-native-cardscan"
+    "postinstall": "node ../scripts/examples_postinstall.js node_modules/react-native-cardverify"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/getbouncer/react-native-cardscan.git",
-    "baseUrl": "https://github.com/getbouncer/react-native-cardscan"
+    "url": "git+https://github.com/getbouncer/react-native-cardverify.git",
+    "baseUrl": "https://github.com/getbouncer/react-native-cardverify"
   },
   "homepage": "https://cardscan.io",
   "author": {
@@ -25,7 +25,7 @@
     "jsc-android": "^241213.1.0",
     "react": "16.13.1",
     "react-native": "0.63.0",
-    "react-native-cardscan": "file:react-native-cardscan-1.1.7.tgz",
+    "react-native-cardverify": "file:react-native-cardverify-0.0.1.tgz",
     "react-native-credit-card-input": "^0.4.1"
   },
   "devDependencies": {

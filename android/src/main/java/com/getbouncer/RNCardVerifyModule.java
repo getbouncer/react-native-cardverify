@@ -3,9 +3,6 @@ package com.getbouncer;
 import android.app.Activity;
 import android.content.Intent;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -13,17 +10,19 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
-import com.getbouncer.cardscan.ui.CardScanActivity;
-import com.getbouncer.cardscan.ui.CardScanActivityResult;
-import com.getbouncer.cardscan.ui.CardScanActivityResultHandler;
+import com.getbouncer.cardverify.ui.CardVerifyActivity;
+import com.getbouncer.cardverify.ui.CardVerifyActivityResult;
+import com.getbouncer.cardverify.ui.CardVerifyActivityResultHandler;
 
-public class RNCardscanModule extends ReactContextBaseJavaModule {
-    private static final int SCAN_REQUEST_CODE = 51234;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+public class RNCardVerifyModule extends ReactContextBaseJavaModule {
+    private static final int SCAN_REQUEST_CODE = 51235;
 
     public static String apiKey = null;
     public static boolean enableExpiryExtraction = false;
     public static boolean enableNameExtraction = false;
-    public static boolean enableEnterCardManually = false;
 
     private final ReactApplicationContext reactContext;
 
@@ -31,10 +30,10 @@ public class RNCardscanModule extends ReactContextBaseJavaModule {
 
     @Override
     public void initialize() {
-        CardScanActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, true);
+        CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey);
     }
 
-    public RNCardscanModule(ReactApplicationContext reactContext) {
+    public RNCardVerifyModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
         this.reactContext.addActivityEventListener(new ActivityEventListener() {
@@ -42,22 +41,46 @@ public class RNCardscanModule extends ReactContextBaseJavaModule {
             @Override
             public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
                 if (requestCode == SCAN_REQUEST_CODE) {
-                    CardScanActivity.parseScanResult(resultCode, data, new CardScanActivityResultHandler() {
+                    CardVerifyActivity.parseVerifyResult(resultCode, data, new CardVerifyActivityResultHandler() {
                         @Override
                         public void cardScanned(
-                                @Nullable String scanId,
-                                @NonNull CardScanActivityResult cardScanActivityResult
+                            @Nullable String instanceId,
+                            @Nullable String scanId,
+                            @NotNull CardVerifyActivityResult result,
+                            int payloadVersion,
+                            @NotNull String encryptedPayload
                         ) {
+                            final String expiryDay;
+                            if (result.getExpiryDay() != null) {
+                                expiryDay = result.getExpiryDay().toString();
+                            } else {
+                                expiryDay = null;
+                            }
+
+                            final String expiryMonth;
+                            if (result.getExpiryMonth() != null) {
+                                expiryMonth = result.getExpiryMonth().toString();
+                            } else {
+                                expiryMonth = null;
+                            }
+
+                            final String expiryYear;
+                            if (result.getExpiryYear() != null) {
+                                expiryYear = result.getExpiryYear().toString();
+                            } else {
+                                expiryYear = null;
+                            }
 
                             final WritableMap cardMap = new WritableNativeMap();
-                            cardMap.putString("number", cardScanActivityResult.getPan());
-                            cardMap.putString("expiryDay", cardScanActivityResult.getExpiryDay());
-                            cardMap.putString("expiryMonth", cardScanActivityResult.getExpiryMonth());
-                            cardMap.putString("expiryYear", cardScanActivityResult.getExpiryYear());
-                            cardMap.putString("issuer", cardScanActivityResult.getNetworkName());
-                            cardMap.putString("cvc", cardScanActivityResult.getCvc());
-                            cardMap.putString("cardholderName", cardScanActivityResult.getCardholderName());
-                            cardMap.putString("error", cardScanActivityResult.getErrorString());
+                            cardMap.putString("number", result.getPan());
+                            cardMap.putString("expiryDay", expiryDay);
+                            cardMap.putString("expiryMonth", expiryMonth);
+                            cardMap.putString("expiryYear", expiryYear);
+                            cardMap.putString("issuer", result.getNetworkName());
+                            cardMap.putString("cvc", result.getCvc());
+                            cardMap.putString("cardholderName", result.getLegalName());
+                            cardMap.putString("payloadVersion", String.valueOf(payloadVersion));
+                            cardMap.putString("verificationPayload", encryptedPayload);
 
                             final WritableMap map = new WritableNativeMap();
                             map.putString("action", "scanned");
@@ -69,10 +92,10 @@ public class RNCardscanModule extends ReactContextBaseJavaModule {
                         }
 
                         @Override
-                        public void enterManually(String scanId) {
+                        public void userMissingCard(String scanId) {
                             final WritableMap map = new WritableNativeMap();
                             map.putString("action", "canceled");
-                            map.putString("canceledReason", "enter_card_manually");
+                            map.putString("canceledReason", "user_missing_card");
                             map.putString("scanId", scanId);
 
                             scanPromise.resolve(map);
@@ -132,9 +155,9 @@ public class RNCardscanModule extends ReactContextBaseJavaModule {
     }
 
     @Override
-    @NonNull
+    @NotNull
     public String getName() {
-        return "RNCardscan";
+        return "RNCardVerify";
     }
 
     @ReactMethod
@@ -143,17 +166,18 @@ public class RNCardscanModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void scan(Promise promise) {
+    public void scan(@Nullable String requiredCardIin, @Nullable String requiredCardLastFour, @NotNull Promise promise) {
         scanPromise = promise;
 
-        final Intent intent = CardScanActivity.buildIntent(
+        final Intent intent = CardVerifyActivity.buildIntent(
                 /* context */ this.reactContext.getApplicationContext(),
                 /* apiKey */ apiKey,
-                /* enableEnterCardManually */ enableEnterCardManually,
-                /* enableExpiryExtraction */ enableExpiryExtraction,
+                /* iin */ requiredCardIin,
+                /* lastFour */ requiredCardLastFour,
                 /* enableNameExtraction */ enableNameExtraction,
+                /* enableExpiryExtraction */ enableExpiryExtraction,
                 /* displayCardPan */ true,
-                /* displayCardholderName */ true
+                /* displayCardName */ true
         );
         this.reactContext.startActivityForResult(intent, SCAN_REQUEST_CODE, null);
     }
