@@ -22,8 +22,6 @@ export default () => {
   const [recentAction, setRecentAction] = useState('none');
 
   const scanCard = useCallback(async () => {
-    console.log(CardVerify)
-    try {
     const { action, scanId, payload, canceledReason } = await CardVerify.scan(null, null);
     setRecentAction(action);
     if (action === 'scanned') {
@@ -69,7 +67,6 @@ export default () => {
         alert('Unknown reason for scan cancellation');
       }
     }
-    } catch(t) { console.log("AGW " + t) }
   }, [setCard, setRecentAction]);
 
   const checkCompatible = useCallback(async () => {

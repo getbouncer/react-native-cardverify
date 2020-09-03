@@ -44,8 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
-    // TODO: AGW - remove this
-    RNCardVerifyModule.apiKey = "4U7hWrEBdmgZrrIOQanpzJTaiwlZPFhf";
+    RNCardVerifyModule.apiKey = "<your_api_key_here>";
     RNCardVerifyModule.enableNameExtraction = true;
     RNCardVerifyModule.enableExpiryExtraction = true;
   }
