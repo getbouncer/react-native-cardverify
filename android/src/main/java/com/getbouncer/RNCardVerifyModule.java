@@ -3,9 +3,6 @@ package com.getbouncer;
 import android.app.Activity;
 import android.content.Intent;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -18,9 +15,10 @@ import com.getbouncer.cardverify.ui.CardVerifyActivityResult;
 import com.getbouncer.cardverify.ui.CardVerifyActivityResultHandler;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class RNCardVerifyModule extends ReactContextBaseJavaModule {
-    private static final int SCAN_REQUEST_CODE = 51234;
+    private static final int SCAN_REQUEST_CODE = 51235;
 
     public static String apiKey = null;
     public static boolean enableExpiryExtraction = false;
