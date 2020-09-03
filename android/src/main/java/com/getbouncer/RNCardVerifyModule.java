@@ -13,17 +13,20 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
-import com.getbouncer.cardscan.ui.CardScanActivity;
-import com.getbouncer.cardscan.ui.CardScanActivityResult;
-import com.getbouncer.cardscan.ui.CardScanActivityResultHandler;
+import com.getbouncer.cardverify.ui.CardVerifyActivity;
+import com.getbouncer.cardverify.ui.CardVerifyActivityResult;
+import com.getbouncer.cardverify.ui.CardVerifyActivityResultHandler;
 
-public class RNCardscanModule extends ReactContextBaseJavaModule {
+import org.jetbrains.annotations.NotNull;
+
+public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     private static final int SCAN_REQUEST_CODE = 51234;
 
     public static String apiKey = null;
     public static boolean enableExpiryExtraction = false;
     public static boolean enableNameExtraction = false;
-    public static boolean enableEnterCardManually = false;
+    public static Integer requiredCardIin = null;
+    public static Integer requiredCardLastFour = null;
 
     private final ReactApplicationContext reactContext;
 
@@ -31,10 +34,10 @@ public class RNCardscanModule extends ReactContextBaseJavaModule {
 
     @Override
     public void initialize() {
-        CardScanActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, true);
+        CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey);
     }
 
-    public RNCardscanModule(ReactApplicationContext reactContext) {
+    public RNCardVerifyModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
         this.reactContext.addActivityEventListener(new ActivityEventListener() {
@@ -42,22 +45,25 @@ public class RNCardscanModule extends ReactContextBaseJavaModule {
             @Override
             public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
                 if (requestCode == SCAN_REQUEST_CODE) {
-                    CardScanActivity.parseScanResult(resultCode, data, new CardScanActivityResultHandler() {
+                    CardVerifyActivity.parseVerifyResult(resultCode, data, new CardVerifyActivityResultHandler() {
                         @Override
                         public void cardScanned(
-                                @Nullable String scanId,
-                                @NonNull CardScanActivityResult cardScanActivityResult
+                            @Nullable String instanceId,
+                            @Nullable String scanId,
+                            @NotNull CardVerifyActivityResult result,
+                            int payloadVersion,
+                            @NotNull String encryptedPayload
                         ) {
-
                             final WritableMap cardMap = new WritableNativeMap();
-                            cardMap.putString("number", cardScanActivityResult.getPan());
-                            cardMap.putString("expiryDay", cardScanActivityResult.getExpiryDay());
-                            cardMap.putString("expiryMonth", cardScanActivityResult.getExpiryMonth());
-                            cardMap.putString("expiryYear", cardScanActivityResult.getExpiryYear());
-                            cardMap.putString("issuer", cardScanActivityResult.getNetworkName());
-                            cardMap.putString("cvc", cardScanActivityResult.getCvc());
-                            cardMap.putString("cardholderName", cardScanActivityResult.getCardholderName());
-                            cardMap.putString("error", cardScanActivityResult.getErrorString());
+                            cardMap.putString("number", result.getPan());
+                            cardMap.putString("expiryDay", result.getExpiryDay().toString());
+                            cardMap.putString("expiryMonth", result.getExpiryMonth().toString());
+                            cardMap.putString("expiryYear", result.getExpiryYear().toString());
+                            cardMap.putString("issuer", result.getNetworkName());
+                            cardMap.putString("cvc", result.getCvc());
+                            cardMap.putString("cardholderName", result.getLegalName());
+                            cardMap.putString("payloadVersion", String.valueOf(payloadVersion));
+                            cardMap.putString("verificationPayload", encryptedPayload);
 
                             final WritableMap map = new WritableNativeMap();
                             map.putString("action", "scanned");
@@ -69,10 +75,10 @@ public class RNCardscanModule extends ReactContextBaseJavaModule {
                         }
 
                         @Override
-                        public void enterManually(String scanId) {
+                        public void userMissingCard(String scanId) {
                             final WritableMap map = new WritableNativeMap();
                             map.putString("action", "canceled");
-                            map.putString("canceledReason", "enter_card_manually");
+                            map.putString("canceledReason", "user_missing_card");
                             map.putString("scanId", scanId);
 
                             scanPromise.resolve(map);
@@ -146,14 +152,15 @@ public class RNCardscanModule extends ReactContextBaseJavaModule {
     public void scan(Promise promise) {
         scanPromise = promise;
 
-        final Intent intent = CardScanActivity.buildIntent(
+        final Intent intent = CardVerifyActivity.buildIntent(
                 /* context */ this.reactContext.getApplicationContext(),
                 /* apiKey */ apiKey,
-                /* enableEnterCardManually */ enableEnterCardManually,
-                /* enableExpiryExtraction */ enableExpiryExtraction,
+                /* iin */ requiredCardIin,
+                /* lastFour */ requiredCardLastFour,
                 /* enableNameExtraction */ enableNameExtraction,
+                /* enableExpiryExtraction */ enableExpiryExtraction,
                 /* displayCardPan */ true,
-                /* displayCardholderName */ true
+                /* displayCardName */ true
         );
         this.reactContext.startActivityForResult(intent, SCAN_REQUEST_CODE, null);
     }
