@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Text, SafeAreaView, TouchableOpacity, View } from 'react-native';
-import Cardscan from 'react-native-cardscan';
+import CardVerify from 'react-native-cardverify';
 import { CardView } from 'react-native-credit-card-input';
 
 const StyledText = ({ color, bold, ...otherProps }) => (
@@ -22,7 +22,9 @@ export default () => {
   const [recentAction, setRecentAction] = useState('none');
 
   const scanCard = useCallback(async () => {
-    const { action, scanId, payload, canceledReason } = await Cardscan.scan();
+    console.log(CardVerify)
+    try {
+    const { action, scanId, payload, canceledReason } = await CardVerify.scan(null, null);
     setRecentAction(action);
     if (action === 'scanned') {
       var issuer = payload.issuer || '??';
@@ -41,13 +43,14 @@ export default () => {
         issuer: issuer,
         cvc: payload.cvc || '??',
         cardholderName: payload.cardholderName || '??',
-        error: payload.error || ''
+        payloadVersion: payload.payloadVersion || 0,
+        verificationPayload: payload.verificationPayload || ''
       });
     }
 
     if (action === 'canceled') {
-      if (canceledReason === 'enter_card_manually') {
-        alert('Enter card manually');
+      if (canceledReason === 'user_missing_card') {
+        alert('User missing card');
       }
 
       if (canceledReason === 'user_canceled') {
@@ -66,10 +69,11 @@ export default () => {
         alert('Unknown reason for scan cancellation');
       }
     }
+    } catch(t) { console.log("AGW " + t) }
   }, [setCard, setRecentAction]);
 
   const checkCompatible = useCallback(async () => {
-    const isCompatible = await Cardscan.isSupportedAsync();
+    const isCompatible = await CardVerify.isSupportedAsync();
     setCompatible(isCompatible);
   }, [setCompatible]);
 

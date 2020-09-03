@@ -1,5 +1,5 @@
 import { NativeModules } from 'react-native';
 
-const { RNCardscan } = NativeModules;
+const { RNCardVerify } = NativeModules;
 
-export default RNCardscan;
+export default RNCardVerify;

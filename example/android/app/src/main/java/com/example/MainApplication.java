@@ -3,12 +3,12 @@ package com.example;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.getbouncer.RNCardscanPackage;
+import com.getbouncer.RNCardVerifyPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.getbouncer.RNCardscanModule;
+import com.getbouncer.RNCardVerifyModule;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +25,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-        new RNCardscanPackage()
+        new RNCardVerifyPackage()
       );
     }
 
@@ -44,9 +44,9 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
-    RNCardscanModule.apiKey = "<your_api_key_here>";
-    RNCardscanModule.enableEnterCardManually = true;
-    RNCardscanModule.enableNameExtraction = true;
-    RNCardscanModule.enableExpiryExtraction = true;
+    // TODO: AGW - remove this
+    RNCardVerifyModule.apiKey = "4U7hWrEBdmgZrrIOQanpzJTaiwlZPFhf";
+    RNCardVerifyModule.enableNameExtraction = true;
+    RNCardVerifyModule.enableExpiryExtraction = true;
   }
 }

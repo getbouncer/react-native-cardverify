@@ -89,7 +89,6 @@ import com.getbouncer.RNCardVerifyModule;
 public void onCreate() {
   ...
   RNCardVerifyModule.apiKey = "<YOUR_API_KEY_HERE>";
-  RNCardVerifyModule.enableEnterCardManually = false; // set to true to enable entering a card manually
   RNCardVerifyModule.enableExpiryExtraction = false; // set to true for experimental expiry extraction
   RNCardVerifyModule.enableNameExtraction = false; // set to true for experimental name extraction
 }

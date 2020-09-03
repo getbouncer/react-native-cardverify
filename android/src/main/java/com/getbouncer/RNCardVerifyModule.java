@@ -23,8 +23,6 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     public static String apiKey = null;
     public static boolean enableExpiryExtraction = false;
     public static boolean enableNameExtraction = false;
-    public static Integer requiredCardIin = null;
-    public static Integer requiredCardLastFour = null;
 
     private final ReactApplicationContext reactContext;
 
@@ -52,11 +50,32 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
                             int payloadVersion,
                             @NotNull String encryptedPayload
                         ) {
+                            final String expiryDay;
+                            if (result.getExpiryDay() != null) {
+                                expiryDay = result.getExpiryDay().toString();
+                            } else {
+                                expiryDay = null;
+                            }
+
+                            final String expiryMonth;
+                            if (result.getExpiryMonth() != null) {
+                                expiryMonth = result.getExpiryMonth().toString();
+                            } else {
+                                expiryMonth = null;
+                            }
+
+                            final String expiryYear;
+                            if (result.getExpiryYear() != null) {
+                                expiryYear = result.getExpiryYear().toString();
+                            } else {
+                                expiryYear = null;
+                            }
+
                             final WritableMap cardMap = new WritableNativeMap();
                             cardMap.putString("number", result.getPan());
-                            cardMap.putString("expiryDay", result.getExpiryDay().toString());
-                            cardMap.putString("expiryMonth", result.getExpiryMonth().toString());
-                            cardMap.putString("expiryYear", result.getExpiryYear().toString());
+                            cardMap.putString("expiryDay", expiryDay);
+                            cardMap.putString("expiryMonth", expiryMonth);
+                            cardMap.putString("expiryYear", expiryYear);
                             cardMap.putString("issuer", result.getNetworkName());
                             cardMap.putString("cvc", result.getCvc());
                             cardMap.putString("cardholderName", result.getLegalName());
@@ -136,9 +155,9 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     }
 
     @Override
-    @NonNull
+    @NotNull
     public String getName() {
-        return "RNCardscan";
+        return "RNCardVerify";
     }
 
     @ReactMethod
@@ -147,7 +166,7 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void scan(Promise promise) {
+    public void scan(@Nullable String requiredCardIin, @Nullable String requiredCardLastFour, @NotNull Promise promise) {
         scanPromise = promise;
 
         final Intent intent = CardVerifyActivity.buildIntent(
