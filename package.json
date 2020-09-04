@@ -1,5 +1,5 @@
 {
-  "name": "react-native-cardverify",
+  "name": "@getbouncer/react-native-cardverify",
   "title": "React Native CardVerify",
   "version": "0.0.1",
   "description": "This library provides payment card scanning functionality for your react-native app.",
@@ -25,13 +25,9 @@
     "ios",
     "fraud"
   ],
-  "author": {
-    "name": "Stefano Suryanto and Adam Wushensky",
-    "email": "support@getbouncer.com"
-  },
+  "author": "Stefano Suryanto and Adam Wushensky <support@getbouncer.com>",
   "license": "SEE LICENSE IN LICENSE FILE",
   "licenseFilename": "LICENSE",
-  "readmeFilename": "README.md",
   "peerDependencies": {
     "react": ">=16.8.1 <17.x",
     "react-native": ">=0.59.0-rc.0 <1.0.x"
@@ -39,5 +35,12 @@
   "devDependencies": {
     "react": "^16.13.1",
     "react-native": "^0.63.2"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/getbouncer/react-native-cardverify/issues"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "dependencies": {}
 }
