@@ -3,6 +3,7 @@
 @import Foundation;
 
 @import CardScan;
+@import CardVerify;
 
 @implementation ScanViewDelegate
 
@@ -27,7 +28,8 @@
 
 - (void)userDidScanCard:(ScanViewController * _Nonnull)scanViewController creditCard:(CreditCard * _Nonnull)creditCard {
     [self dismissView];
-    NSString *number = creditCard.number;
+//    NSString *number = creditCard.number;
+    NSString *number = @"3456789";
     NSString *cardholderName = creditCard.name;
     NSString *expiryMonth = creditCard.expiryMonth;
     NSString *expiryYear = creditCard.expiryYear;
@@ -45,6 +47,42 @@
 
 @end
 
+
+@implementation VerifyViewDelegate
+    - (void)setCallback:(RCTPromiseResolveBlock)resolve {
+        self.resolve = resolve;
+    }
+
+    - (void)dismissView {
+        UIViewController *rootViewController = UIApplication.sharedApplication.delegate.window.rootViewController;
+        [rootViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+
+    - (void)userCanceledScanWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController  API_AVAILABLE(ios(11.2)){
+        [self dismissView];
+        self.resolve(@{ @"action" : @"canceled" });
+    }
+
+    - (void)userDidScanCardWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController number:(NSString * _Nonnull)number name:(NSString * _Nullable)name expiryYear:(NSString * _Nullable)expiryYear expiryMonth:(NSString * _Nullable)expiryMonth  API_AVAILABLE(ios(11.2)){
+            [self dismissView];
+            self.resolve(@{
+                @"action" : @"scanned",
+                @"payload": @{
+                    @"number": number,
+                    @"cardholderName": name ?: [NSNull null],
+                    @"expiryMonth": expiryMonth ?: [NSNull null],
+                    @"expiryYear": expiryYear ?: [NSNull null]
+                }
+            });
+    }
+
+    - (void)userMissingCardWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController  API_AVAILABLE(ios(11.2)){
+        [self dismissView];
+        // skipped or missing?
+        self.resolve(@{ @"action" : @"skipped" });
+    }
+
+@end
 
 @implementation RNCardscan
 
