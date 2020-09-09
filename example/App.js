@@ -97,6 +97,9 @@ export default () => {
         </TouchableOpacity>
       }
       {card &&
+      <StyledText>Payload: {card.verificationPayload.length > 0 ? 'Ready' : 'Not Ready'}</StyledText>
+      }
+      {card &&
         <View style={{ margin: 20, flexDirection: 'row', flex: 1, justifyContent: 'center' }}>
           <CardView
             number={card.number}
