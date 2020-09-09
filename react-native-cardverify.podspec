@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.version      = package["version"]
   s.summary      = package["description"]
   s.description  = <<-DESC
-                  react-native-cardscan
+                  react-native-cardverify
                    DESC
   s.homepage     = "https://github.com/getbouncer/react-native-cardverify"
   s.license      = "MIT"
@@ -20,5 +20,6 @@ Pod::Spec.new do |s|
 
   s.dependency "React"
   s.dependency "CardScan"
+  s.dependency "CardVerify"
 end
 

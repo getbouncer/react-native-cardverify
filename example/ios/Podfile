@@ -5,7 +5,9 @@ platform :ios, '10.0'
 
 target 'example' do
   pod 'CardScan'
-  pod 'react-native-cardscan', :path => '../node_modules/react-native-cardscan/react-native-cardscan.podspec'
+  pod 'CardVerify', :path => ''
+  pod 'react-native-cardverify', :path => '../node_modules/react-native-cardverify/react-native-cardverify.podspec'
+
   config = use_native_modules!
   use_react_native!(:path => config["reactNativePath"])
 
