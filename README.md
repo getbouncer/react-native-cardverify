@@ -84,7 +84,7 @@ $ react-native link react-native-cardverify
     - Add `new RNCardVerifyPackage()` to the list returned by the `getPackages()` method
 
 
-### Configure CardVerify SDK
+### 4. Configure CardVerify SDK
 
 #### iOS
 
