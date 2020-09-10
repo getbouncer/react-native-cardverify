@@ -2,7 +2,7 @@
 
 CardVerify React Native installation guide
 
-Visit our website at https://cardscan.io for examples. We also have support for native Android and iOS libraries.
+Visit our website at https://www.getbouncer.com for examples. Native libraries for [android](https://github.com/getbouncer/cardverify-andorid) and [iOS](https://github.com/getbouncer/cardverify-ios) are also available in github.
 
 CardVerify is closed source, and requires a license agreement. See the [license](#license) section for details.
 
@@ -11,7 +11,7 @@ CardVerify is closed source, and requires a license agreement. See the [license]
 
 #### iOS
 
-Install and setup permission [cardverify-ios](https://github.com/getbouncer/cardverify-ios#installation)
+Install and setup permission can be found in the native [integration guide](https://docs.getbouncer.com/card-verify/ios-integration-guide)
 
 #### Android
 
@@ -98,7 +98,7 @@ platform :ios, '10.0'
   target 'Your App' do
   ...
   pod 'CardScan'
-  pod 'CardVerify'
+  pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<API_SECRET>/cardverify-ios-1.0.5028.tgz'
   pod 'react-native-cardverify', :path => '../node_modules/react-native-cardverify/react-native-cardverify.podspec'
 end
 ```
@@ -142,7 +142,7 @@ CardVerify.isSupportedAsync()
 ```javascript
 import CardVerify from 'react-native-cardverify';
 
-CardVerify.scan()
+CardVerify.scan(last4, iin)
   .then(({action, payload, canceled_reason}) => {
     if (action === 'scanned') {
       const { number, expiryMonth, expiryYear, issuer, legalName } = payload;
@@ -203,7 +203,7 @@ adb reverse tcp:8081 tcp:8081 && adb shell am start -n com.example/com.example.M
 
 ## Authors
 
-Adam Wushensky, Sam King, Zain ul Abi Din, and Stefano Suryanto
+Adam Wushensky, Jaime Park, Sam King, Zain ul Abi Din, and Stefano Suryanto
 
 ## License
 
