@@ -15,7 +15,33 @@ Install and setup permission [cardverify-ios](https://github.com/getbouncer/card
 
 #### Android
 
-Install the private android repositories for cardverify by following the [integration guide](https://docs.getbouncer.com/card-verify/android-integration-guide#integration).
+The following steps outline the basic installation procedure. More details can be found in the native [integration guide](https://docs.getbouncer.com/card-verify/android-integration-guide#integration).
+
+##### 1.1 Request credentials
+If you don't already have them, request repository credentials from [license@getbouncer.com](mailto:license@getbouncer.com).
+
+##### 1.2 Add the repository
+Add the CardVerify repository to the android section of your react-native project. In your `android/build.gradle` file, append the following to repositories:
+```gradle
+repositories {
+    ...
+    maven {
+        url "https://bouncerpaid.bintray.com/cardverify-ui-android"
+        credentials {
+            username "<FILL_IN_YOUR_USERNAME>"
+            password "<FILL_IN_YOUR_PASSWORD>"
+        }
+    }
+}
+```
+
+##### 1.3 Add dependencies
+Add the cardverify dependencies to the android section of your react-native project. In your `android/app/build.gradle` file, append the following to dependencies:
+```gradle
+dependencies {
+    implementation 'com.getbouncer:cardverify-ui:2.0.0030'
+}
+```
 
 _Note: You will need a username and password to set up these repositories. Please contact [license@getbouncer.com](mailto:license@getbouncer.com) to request credentials._
 
