@@ -11,7 +11,24 @@ CardVerify is closed source, and requires a license agreement. See the [license]
 
 #### iOS
 
-Install and setup permission can be found in the native [integration guide](https://docs.getbouncer.com/card-verify/ios-integration-guide)
+The following steps outline the basic installation procedure. More details can be found in the native [integration guide](https://docs.getbouncer.com/card-verify/ios-integration-guide).
+
+##### 1.1 Request credentials
+If you don't already have them, request repository credentials from [license@getbouncer.com](mailto:license@getbouncer.com) and create an [API key](https://api.getbouncer.com/console).
+
+##### 1.2 Add dependencies
+CardVerify is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<API_SECRET>/cardverify-ios-1.0.5028.tgz'
+```
+
+Next, install the new pod. From a terminal, run:
+
+```
+pod install
+```
 
 #### Android
 
@@ -87,11 +104,6 @@ $ react-native link react-native-cardverify
 ### 4. Configure CardVerify SDK
 
 #### iOS
-
-Install and setup permission for CardVerify iOS with directions [here](https://github.com/getbouncer/cardverify-ios#installation)
-
-Also, the instructions to configure your API key in Obj-C is [here](https://github.com/getbouncer/cardverify-ios#configure-cardverify-objective-c)
-
 The podfile in your `~/ios/Podfile` in your project should look similar to:
 ```ruby
 platform :ios, '10.0'
@@ -101,6 +113,39 @@ platform :ios, '10.0'
   pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<API_SECRET>/cardverify-ios-1.0.5028.tgz'
   pod 'react-native-cardverify', :path => '../node_modules/react-native-cardverify/react-native-cardverify.podspec'
 end
+```
+
+Configure the library when your application launches:
+##### Swift
+```swift
+import UIKit
+import CardVerify
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    	 Bouncer.configure(apiKey: "YOUR API KEY") 
+        // do any other necessary launch configuration
+        return true
+    }
+}
+```
+##### Obj-c
+```objective-c
+#import "AppDelegate.h"
+...
+@import CardVerify;
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  ...
+  [Bouncer configureWithApiKey:@"YOUR_API_KEY"];
+
+  return YES;
+}
 ```
 
 #### Android
