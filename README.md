@@ -2,7 +2,7 @@
 
 CardVerify React Native installation guide
 
-Visit our website at https://cardscan.io for examples. Native libraries for [android](https://github.com/getbouncer/cardverify-andorid) and [iOS](https://github.com/getbouncer/cardverify-ios) are also available in github.
+Visit our website at https://cardscan.io for examples. We also have support for native Android and iOS libraries.
 
 CardVerify is closed source, and requires a license agreement. See the [license](#license) section for details.
 
