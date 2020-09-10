@@ -240,7 +240,7 @@ This is a [known issue with react-native](https://github.com/react-native-commun
     use_frameworks!
   ```
 
-  _Note that `Flipper` is not compatible with `use_frameworks!`, and will have to be disabled if in use:
+  _Note that `Flipper` is not compatible with `use_frameworks!`, and will have to be disabled if in use by deleting these lines_:
   ```ruby
     use_flipper!
     post_install do |installer|
