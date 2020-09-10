@@ -22,7 +22,7 @@ it, simply add `CardVerify` into your Podfile.
 The podfile in your `~/ios/Podfile` in your project should look similar to:
 ```ruby
 platform :ios, '10.0'
-  target 'Your App' do
+target 'Your App' do
   ...
   pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<API_SECRET>/cardverify-ios-1.0.5028.tgz'
   pod 'react-native-cardverify', :path => '../node_modules/react-native-cardverify/react-native-cardverify.podspec'
@@ -226,36 +226,34 @@ To run the example app, do the following:
 #### iOS
 
 ##### `ld: warning: Could not find auto-linked library 'swiftFoundation'`
-* A workaround with XCode 11 is to add a bridge header https://stackoverflow.com/a/56176956
+A workaround with XCode 11 is to add a bridge header https://stackoverflow.com/a/56176956
 
 ##### `error: Failed to build iOS project. We ran "xcodebuild" command but it exited with error code 65`
-* A workaround with a newer XCode build system is to switch to the legacy build https://stackoverflow.com/a/51089264
+A workaround with a newer XCode build system is to switch to the legacy build https://stackoverflow.com/a/51089264
 
 ##### `Undefined symbols for architecture x86_64`
-* CardVerify is not compatible with plugins like `Flipper`. Please remove the following lines from your `ios/Podfile`:
+This is a [known issue with react-native](https://github.com/react-native-community/upgrade-support/issues/77). There are two ways to remediate this problem:
 
-```ruby
-  use_flipper!
 
-  post_install do |installer|
-    flipper_post_install(installer)
-  end
-```
+* Add `use_frameworks!` to your podfile:
+  ```ruby
+    use_frameworks!
+  ```
 
-Add the following lines to your Podfile:
-```ruby
-  use_frameworks!
-
-  post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      if ['CardScan'].include? target.name
-        target.build_configurations.each do |config|
-          config.build_settings['SWIFT_VERSION'] = '4.2'
-        end
-      end
+  _Note that `Flipper` is not compatible with `use_frameworks!`, and will have to be disabled if in use:
+  ```ruby
+    use_flipper!
+    post_install do |installer|
+      flipper_post_install(installer)
     end
-  end
-```
+  ```
+
+* Update your `LD_RUNPATH_SEARCH_PATHS`:
+
+  Add the following line to all of your build configurations across your project:
+  ```
+  LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME) /usr/lib/swift @executable_path/Frameworks @loader_path/Frameworks";
+  ```
 
 #### Android
 
