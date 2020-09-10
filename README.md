@@ -231,6 +231,32 @@ To run the example app, do the following:
 ##### `error: Failed to build iOS project. We ran "xcodebuild" command but it exited with error code 65`
 * A workaround with a newer XCode build system is to switch to the legacy build https://stackoverflow.com/a/51089264
 
+##### `Undefined symbols for architecture x86_64`
+* CardVerify is not compatible with plugins like `Flipper`. Please remove the following lines from your `ios/Podfile`:
+
+```ruby
+  use_flipper!
+
+  post_install do |installer|
+    flipper_post_install(installer)
+  end
+```
+
+Add the following lines to your Podfile:
+```ruby
+  use_frameworks!
+
+  post_install do |installer|
+    installer.pods_project.targets.each do |target|
+      if ['CardScan'].include? target.name
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '4.2'
+        end
+      end
+    end
+  end
+```
+
 #### Android
 
 ##### `Error: spawnSync /.../Andoroid/sdk/platform-tools/adb ENOENT`
