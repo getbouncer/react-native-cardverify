@@ -1,5 +1,5 @@
 {
-  "name": "@bouncer/react-native-cardverify",
+  "name": "react-native-cardverify",
   "title": "React Native CardVerify",
   "version": "0.0.3",
   "description": "This library provides payment card scanning functionality for your react-native app.",
