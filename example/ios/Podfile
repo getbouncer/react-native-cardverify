@@ -4,7 +4,6 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 platform :ios, '10.0'
 
 target 'example' do
-  pod 'CardScan'
   pod 'CardVerify', :path => ''
   pod 'react-native-cardverify', :path => '../node_modules/react-native-cardverify/react-native-cardverify.podspec'
 

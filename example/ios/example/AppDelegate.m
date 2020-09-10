@@ -11,7 +11,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-@import CardScan;
+@import CardVerify;
 
 @implementation AppDelegate
 
@@ -29,8 +29,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-
-  [ScanViewController configureWithApiKey:@"ENTER_API_KEY"];
+  [Bouncer configureWithApiKey:@"ENTER_API_KEY"];
 
   return YES;
 }
