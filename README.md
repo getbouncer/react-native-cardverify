@@ -18,10 +18,15 @@ If you don't already have them, request repository credentials from [license@get
 
 ##### 1.2 Add dependencies
 CardVerify is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
+it, simply add `CardVerify` into your Podfile. 
+The podfile in your `~/ios/Podfile` in your project should look similar to:
 ```ruby
-pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<API_SECRET>/cardverify-ios-1.0.5028.tgz'
+platform :ios, '10.0'
+  target 'Your App' do
+  ...
+  pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<API_SECRET>/cardverify-ios-1.0.5028.tgz'
+  pod 'react-native-cardverify', :path => '../node_modules/react-native-cardverify/react-native-cardverify.podspec'
+end
 ```
 
 Next, install the new pod. From a terminal, run:
@@ -32,7 +37,7 @@ pod install
 
 #### Android
 
-The following steps outline the basic installation procedure. More details can be found in the native [integration guide](https://docs.getbouncer.com/card-verify/android-integration-guide#integration).
+The following steps outline the basic installation procedure. More details can be found in the native [integration guide](https://docs.getbouncer.com/card-verify/android-integration-guide#integration) and create an [API key](https://api.getbouncer.com/console).
 
 ##### 1.1 Request credentials
 If you don't already have them, request repository credentials from [license@getbouncer.com](mailto:license@getbouncer.com).
@@ -104,18 +109,7 @@ $ react-native link react-native-cardverify
 ### 4. Configure CardVerify SDK
 
 #### iOS
-The podfile in your `~/ios/Podfile` in your project should look similar to:
-```ruby
-platform :ios, '10.0'
-  target 'Your App' do
-  ...
-  pod 'CardScan'
-  pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<API_SECRET>/cardverify-ios-1.0.5028.tgz'
-  pod 'react-native-cardverify', :path => '../node_modules/react-native-cardverify/react-native-cardverify.podspec'
-end
-```
-
-Configure the library when your application launches:
+After you install the CardVerify pod, configure the library with your [API key](https://api.getbouncer.com/console) when your application launches in `AppDelegate.swift` or `AppDelegate.m`:
 ##### Swift
 ```swift
 import UIKit
