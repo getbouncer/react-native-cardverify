@@ -61,7 +61,7 @@ repositories {
 Add the cardverify dependencies to the android section of your react-native project. In your `android/app/build.gradle` file, append the following to dependencies:
 ```gradle
 dependencies {
-    implementation 'com.getbouncer:cardverify-ui:2.0.0030'
+    implementation 'com.getbouncer:cardverify-ui:2.0.0031'
 }
 ```
 
