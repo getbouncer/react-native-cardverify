@@ -31,6 +31,13 @@ allprojects {
             // Android JSC is installed from npm
             url "$rootDir/../node_modules/jsc-android/dist"
         }
+        maven {
+            url "https://bouncerpaid.bintray.com/cardverify-ui-android"
+            credentials {
+                username "<FILL_IN_YOUR_USERNAME>"
+                password "<FILL_IN_YOUR_PASSWORD>"
+            }
+        }
         google()
         jcenter()
     }
