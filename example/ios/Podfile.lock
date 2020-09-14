@@ -3,7 +3,7 @@ PODS:
   - CardScan (1.0.5045):
     - CardScan/Core (= 1.0.5045)
   - CardScan/Core (1.0.5045)
-  - CardVerify (1.0.5028):
+  - CardVerify (1.0.5029):
     - CardScan (~> 1.0.5045)
   - CocoaAsyncSocket (7.6.4)
   - CocoaLibEvent (1.0.0)
