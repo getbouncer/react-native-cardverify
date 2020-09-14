@@ -3,7 +3,7 @@ PODS:
   - CardScan (1.0.5045):
     - CardScan/Core (= 1.0.5045)
   - CardScan/Core (1.0.5045)
-  - CardVerify (1.0.5028):
+  - CardVerify (1.0.5029):
     - CardScan (~> 1.0.5045)
   - CocoaAsyncSocket (7.6.4)
   - CocoaLibEvent (1.0.0)
@@ -241,7 +241,7 @@ PODS:
     - React-cxxreact (= 0.63.0)
     - React-jsi (= 0.63.0)
   - React-jsinspector (0.63.0)
-  - react-native-cardverify (0.0.3):
+  - react-native-cardverify (1.0.3):
     - CardScan
     - CardVerify
     - React
@@ -310,7 +310,7 @@ PODS:
     - Yoga (~> 1.14)
 
 DEPENDENCIES:
-  - CardVerify (from `../../../cardverify-ios`)
+  - "CardVerify (from `{:http=>\"https://api.getbouncer.com/v1/downloads/sdk/card_verify/<your_api_key_here>/cardverify-ios-1.0.5029.tgz\"}`)"
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
@@ -378,7 +378,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   CardVerify:
-    :path: "../../../cardverify-ios"
+    :http: https://api.getbouncer.com/v1/downloads/sdk/card_verify/<your_api_key_here>/cardverify-ios-1.0.5029.tgz
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   FBLazyVector:
@@ -434,10 +434,14 @@ EXTERNAL SOURCES:
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
+CHECKOUT OPTIONS:
+  CardVerify:
+    :http: https://api.getbouncer.com/v1/downloads/sdk/card_verify/<your_api_key_here>/cardverify-ios-1.0.5029.tgz
+
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   CardScan: aacc79b725c71667c6b0c4a766b2180ddb7965b9
-  CardVerify: 5b4fab369592c0d30111a92c2c3d0275450ffd65
+  CardVerify: 0b7779a96fb52a8bcac0624d12fd2c1ccc63f230
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
   CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
   DoubleConversion: cde416483dac037923206447da6e1454df403714
@@ -463,7 +467,7 @@ SPEC CHECKSUMS:
   React-jsi: 254710f3a97e587427bfbf3011dacec2af66a1fc
   React-jsiexecutor: 0e0cb4e170ca72d4bb1179843d08dcbea3d100ac
   React-jsinspector: fc661eff8edbfb7e22119382c13f33bcadde0f3c
-  react-native-cardverify: 0e5b3b3f732837dd26f217a1a2bd6942c0086019
+  react-native-cardverify: 396e4900bb4d0785dee31b69ad4cd5cc44322ede
   React-RCTActionSheet: aadd91a1d6cbfae50dd41f140004f816e9e47ade
   React-RCTAnimation: 7fa2ef6c0ef1e3f0b7d2261c827ec94412deb5e6
   React-RCTBlob: ccbbc70295aee3a76a70323b48f63fb7a7fcffd6
@@ -477,6 +481,6 @@ SPEC CHECKSUMS:
   Yoga: 7d2edc5b410474191962e6dee88ee67f9b328b6b
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: e07b567b3b03df2b208ae1c4ad0a1aee48b31bf9
+PODFILE CHECKSUM: caacc2077d4a8391abe87a5e9d87bb966e359b07
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.0.beta.2
