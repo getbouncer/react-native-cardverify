@@ -241,7 +241,7 @@ PODS:
     - React-cxxreact (= 0.63.0)
     - React-jsi (= 0.63.0)
   - React-jsinspector (0.63.0)
-  - react-native-cardverify (1.0.3):
+  - react-native-cardverify (1.0.4):
     - CardScan
     - CardVerify
     - React
@@ -441,7 +441,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   CardScan: aacc79b725c71667c6b0c4a766b2180ddb7965b9
-  CardVerify: 0b7779a96fb52a8bcac0624d12fd2c1ccc63f230
+  CardVerify: 03b7b5b26c0afd899a875dd499987ede958898ff
   CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
   CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
   DoubleConversion: cde416483dac037923206447da6e1454df403714
@@ -467,7 +467,7 @@ SPEC CHECKSUMS:
   React-jsi: 254710f3a97e587427bfbf3011dacec2af66a1fc
   React-jsiexecutor: 0e0cb4e170ca72d4bb1179843d08dcbea3d100ac
   React-jsinspector: fc661eff8edbfb7e22119382c13f33bcadde0f3c
-  react-native-cardverify: 396e4900bb4d0785dee31b69ad4cd5cc44322ede
+  react-native-cardverify: dd293b6c432779b8ebe40a9e2c7277004afc2e40
   React-RCTActionSheet: aadd91a1d6cbfae50dd41f140004f816e9e47ade
   React-RCTAnimation: 7fa2ef6c0ef1e3f0b7d2261c827ec94412deb5e6
   React-RCTBlob: ccbbc70295aee3a76a70323b48f63fb7a7fcffd6
@@ -481,6 +481,6 @@ SPEC CHECKSUMS:
   Yoga: 7d2edc5b410474191962e6dee88ee67f9b328b6b
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: f48f395eebe45854ca0b0f4fb94f0ac3af92594a
+PODFILE CHECKSUM: dae373fc7b137576738c46ea0a2946f3583c14bb
 
 COCOAPODS: 1.10.0.beta.2
