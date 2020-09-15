@@ -7,7 +7,6 @@ CardVerify is an enterprise library build on the CardScan foundation.
 
 ![Android Lint](https://github.com/getbouncer/react-native-cardverify/workflows/Android%20Lint/badge.svg)
 ![Android Unit Tests](https://github.com/getbouncer/react-native-cardverify/workflows/Android%20Unit%20Tests/badge.svg)
-![Android Instrumentation Tests](https://github.com/getbouncer/react-native-cardverify/workflows/Android%20Instrumentation%20Tests/badge.svg)
 ![Release](https://github.com/getbouncer/react-native-cardverify/workflows/Release/badge.svg)
 [![GitHub release](https://img.shields.io/github/release/getbouncer/react-native-cardverify.svg?maxAge=60)](https://github.com/getbouncer/react-native-cardverify/releases)
 
