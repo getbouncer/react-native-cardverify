@@ -73,10 +73,15 @@ RCT_EXPORT_METHOD(scan:(NSString * _Nullable)requiredIin requiredLastFour:(NSStr
 
     dispatch_async(dispatch_get_main_queue(), ^{
         if (@available(iOS 11.2, *)) {
-            UIViewController *rootViewController = UIApplication.sharedApplication.delegate.window.rootViewController;
-            UIViewController *vc = [Bouncer createVerifyViewControllerWithLast4:requiredLastFour iin:requiredIin withDelegate:self.verifyViewDelegate];
+            UIViewController *topViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+
+            while (topViewController.presentedViewController) {
+                topViewController = topViewController.presentedViewController;
+            }
             
-            [rootViewController presentViewController:vc animated:NO completion:nil];
+            UIViewController *vc = [Bouncer createVerifyViewControllerWithLast4:requiredLastFour iin:requiredIin withDelegate:self.verifyViewDelegate];
+
+            [topViewController presentViewController:vc animated:NO completion:nil];
         } else {
             // Fallback on earlier versions
         }
