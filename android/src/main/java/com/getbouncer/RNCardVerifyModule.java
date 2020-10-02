@@ -11,7 +11,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.getbouncer.cardverify.ui.CardVerifyActivity;
-import com.getbouncer.cardverify.ui.CardVerifyActivityResult;
+import com.getbouncer.cardverify.ui.base.CardVerifyActivityResult;
 import com.getbouncer.cardverify.ui.CardVerifyActivityResultHandler;
 
 import org.jetbrains.annotations.NotNull;
@@ -21,8 +21,10 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     private static final int SCAN_REQUEST_CODE = 51235;
 
     public static String apiKey = null;
-    public static boolean enableExpiryExtraction = false;
-    public static boolean enableNameExtraction = false;
+    public static boolean enableEnterCardManually = true;
+    public static boolean enableMissingCard = true;
+    public static boolean enableExpiryExtraction = true;
+    public static boolean enableNameExtraction = true;
 
     private final ReactApplicationContext reactContext;
 
@@ -30,7 +32,7 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
 
     @Override
     public void initialize() {
-        CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey);
+        CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction);
     }
 
     public RNCardVerifyModule(ReactApplicationContext reactContext) {
@@ -44,8 +46,8 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
                     CardVerifyActivity.parseVerifyResult(resultCode, data, new CardVerifyActivityResultHandler() {
                         @Override
                         public void cardScanned(
-                            @Nullable String instanceId,
                             @Nullable String scanId,
+                            @Nullable String instanceId,
                             @NotNull CardVerifyActivityResult result,
                             int payloadVersion,
                             @NotNull String encryptedPayload
@@ -85,6 +87,17 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
                             final WritableMap map = new WritableNativeMap();
                             map.putString("action", "scanned");
                             map.putMap("payload", cardMap);
+                            map.putString("scanId", scanId);
+
+                            scanPromise.resolve(map);
+                            scanPromise = null;
+                        }
+
+                        @Override
+                        public void enterManually(String scanId) {
+                            final WritableMap map = new WritableNativeMap();
+                            map.putString("action", "canceled");
+                            map.putString("canceledReason", "enter_card_manually");
                             map.putString("scanId", scanId);
 
                             scanPromise.resolve(map);
@@ -174,10 +187,10 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
                 /* apiKey */ apiKey,
                 /* iin */ requiredCardIin,
                 /* lastFour */ requiredCardLastFour,
+                /* enableEnterCardManually */ enableEnterCardManually,
+                /* enableMissingCard */ enableMissingCard,
                 /* enableNameExtraction */ enableNameExtraction,
-                /* enableExpiryExtraction */ enableExpiryExtraction,
-                /* displayCardPan */ true,
-                /* displayCardName */ true
+                /* enableExpiryExtraction */ enableExpiryExtraction
         );
         this.reactContext.startActivityForResult(intent, SCAN_REQUEST_CODE, null);
     }
