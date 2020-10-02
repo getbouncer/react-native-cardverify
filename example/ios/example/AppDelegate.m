@@ -30,6 +30,7 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   [Bouncer configureWithApiKey:@"ENTER_API_KEY"];
+  Bouncer.useServerImageAnalysis = YES;
 
   return YES;
 }
