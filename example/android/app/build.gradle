@@ -102,7 +102,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example"
+        applicationId "com.getbouncer.example"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -152,7 +152,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
-    implementation "com.getbouncer:cardverify-ui:2.0.0042"
+    implementation "com.getbouncer:cardverify-ui:2.0.0043"
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermesvm/android/";
