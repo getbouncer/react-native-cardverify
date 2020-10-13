@@ -4,7 +4,7 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 platform :ios, '10.0'
 
 target 'example' do
-  pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<your_api_key_here>/cardverify-ios-1.0.5034.tgz'
+  pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<your_api_key_here>/cardverify-ios-1.0.5035.tgz'
   pod 'react-native-cardverify', :path => '../node_modules/react-native-cardverify/react-native-cardverify.podspec'
 
   config = use_native_modules!

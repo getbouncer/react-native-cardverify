@@ -20,6 +20,6 @@ Pod::Spec.new do |s|
 
   s.dependency "React"
   s.dependency "CardScan", '~> 1.0.5048'
-  s.dependency "CardVerify", '~> 1.0.5034'
+  s.dependency "CardVerify", '~> 1.0.5035'
 end
 
