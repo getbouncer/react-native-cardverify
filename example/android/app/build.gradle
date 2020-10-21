@@ -152,7 +152,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
-    implementation "com.getbouncer:cardverify-ui:2.0.0046"
+    implementation "com.getbouncer:cardverify-ui:2.0.0049"
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermesvm/android/";
