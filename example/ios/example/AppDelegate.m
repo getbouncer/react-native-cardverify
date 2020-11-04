@@ -31,6 +31,7 @@
   [self.window makeKeyAndVisible];
   [Bouncer configureWithApiKey:@"ENTER_API_KEY"];
   Bouncer.useServerImageAnalysis = YES;
+  Bouncer.useFlashFlow = YES;
 
   return YES;
 }
