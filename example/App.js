@@ -67,6 +67,10 @@ export default () => {
         alert('Unknown reason for scan cancellation');
       }
     }
+
+    if (action === 'skipped') {
+        alert('User skipped scanning for manual entry');
+    }
   }, [setCard, setRecentAction]);
 
   const checkCompatible = useCallback(async () => {

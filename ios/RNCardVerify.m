@@ -48,6 +48,10 @@
                      });
     }
 
+    - (void)userDidSkipWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController {
+        [self dismissView];
+        self.resolve(@{ @"action": @"skipped" });
+
 @end
 
 //MARK: -RNCardVerify Module Implementation
