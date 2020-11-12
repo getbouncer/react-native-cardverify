@@ -17,15 +17,15 @@
   },
   "homepage": "https://cardscan.io",
   "author": {
-    "name": "Stefano Suryanto and Adam Wushensky",
-    "email": "adam@getbouncer.com"
+    "name": "Adam Wushensky and Jaime Park",
+    "email": "support@getbouncer.com"
   },
   "dependencies": {
     "hermesvm": "^0.1.1",
     "jsc-android": "^241213.1.0",
     "react": "16.13.1",
     "react-native": "0.63.0",
-    "react-native-cardverify": "file:react-native-cardverify-1.0.21.tgz",
+    "react-native-cardverify": "file:react-native-cardverify-1.0.22.tgz",
     "react-native-credit-card-input": "^0.4.1"
   },
   "devDependencies": {
