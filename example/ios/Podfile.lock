@@ -305,7 +305,7 @@ PODS:
     - Yoga (~> 1.14)
 
 DEPENDENCIES:
-  - "CardVerify (from `{:http=>\"https://api.getbouncer.com/v1/downloads/sdk/card_verify/A9VPiWHx14J4pDjc2h82DnrgVw8GeoS5/cardverify-ios-1.0.5041-xcframework-test4.tgz\"}`)"
+  - "CardVerify (from `{:http=>\"https://api.getbouncer.com/v1/downloads/sdk/card_verify/A9VPiWHx14J4pDjc2h82DnrgVw8GeoS5/cardverify-ios-1.0.5041-xcframework-test6.tgz\"}`)"
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
@@ -372,7 +372,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   CardVerify:
-    :http: https://api.getbouncer.com/v1/downloads/sdk/card_verify/A9VPiWHx14J4pDjc2h82DnrgVw8GeoS5/cardverify-ios-1.0.5041-xcframework-test4.tgz
+    :http: https://api.getbouncer.com/v1/downloads/sdk/card_verify/A9VPiWHx14J4pDjc2h82DnrgVw8GeoS5/cardverify-ios-1.0.5041-xcframework-test6.tgz
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   FBLazyVector:
@@ -430,7 +430,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CardVerify:
-    :http: https://api.getbouncer.com/v1/downloads/sdk/card_verify/A9VPiWHx14J4pDjc2h82DnrgVw8GeoS5/cardverify-ios-1.0.5041-xcframework-test4.tgz
+    :http: https://api.getbouncer.com/v1/downloads/sdk/card_verify/A9VPiWHx14J4pDjc2h82DnrgVw8GeoS5/cardverify-ios-1.0.5041-xcframework-test6.tgz
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
@@ -474,6 +474,6 @@ SPEC CHECKSUMS:
   Yoga: 7d2edc5b410474191962e6dee88ee67f9b328b6b
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 0340fc513c48e19912ca8463d4a8458e1f3cdeb1
+PODFILE CHECKSUM: 68343c5c1f93d9da740700a6079da5f0c64f3909
 
-COCOAPODS: 1.10.0.beta.2
+COCOAPODS: 1.10.0
