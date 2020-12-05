@@ -3,14 +3,14 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 
 platform :ios, '10.0'
 
+dynamic_frameworks = ['CardVerify']
+
 target 'example' do
-  pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<your_api_key_here>/cardverify-ios-1.0.5040.tgz'
+  pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<your_api_key_here>/cardverify-ios-1.0.5041-xcframework-release.tgz'
   pod 'react-native-cardverify', :path => '../node_modules/react-native-cardverify/react-native-cardverify.podspec'
 
   config = use_native_modules!
-  use_react_native!(:path => config["reactNativePath"])
-
-  
+  use_react_native!(:path => config["reactNativePath"])  
 
   # Enables Flipper.
   #
@@ -22,3 +22,13 @@ target 'example' do
   end
 end
 
+pre_install do |installer|
+  installer.pod_targets.each do |pod|
+    if dynamic_frameworks.include?(pod.name)
+      puts "Overriding the build_as_static_framework? method for #{pod.name}"
+      def pod.build_as_static_framework?;
+        false
+      end
+    end
+  end
+end
