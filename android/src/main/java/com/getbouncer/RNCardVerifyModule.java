@@ -193,7 +193,7 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void scan(@Nullable String requiredCardIin, @Nullable String requiredCardLastFour, @NotNull Promise promise) {
+    public void scan(@Nullable String requiredCardIin, @Nullable String requiredCardLastFour, Boolean skipVerificationOnDownloadFailure, @NotNull Promise promise) {
         scanPromise = promise;
 
         final Intent intent = CardVerifyActivity.buildIntent(
@@ -204,7 +204,8 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
                 /* enableEnterCardManually */ enableEnterCardManually,
                 /* enableMissingCard */ enableMissingCard,
                 /* enableNameExtraction */ enableNameExtraction,
-                /* enableExpiryExtraction */ enableExpiryExtraction
+                /* enableExpiryExtraction */ enableExpiryExtraction,
+                /* skipVerificationOnDownloadFailure */ skipVerificationOnDownloadFailure
         );
         this.reactContext.startActivityForResult(intent, SCAN_REQUEST_CODE, null);
     }

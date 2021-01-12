@@ -22,7 +22,7 @@ export default () => {
   const [recentAction, setRecentAction] = useState('none');
 
   const scanCard = useCallback(async () => {
-    const { action, scanId, payload, canceledReason } = await CardVerify.scan(null, null);
+    const { action, scanId, payload, canceledReason } = await CardVerify.scan(null, null, true);
     setRecentAction(action);
     if (action === 'scanned') {
       var issuer = payload.issuer || '??';
