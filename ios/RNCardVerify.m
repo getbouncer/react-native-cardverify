@@ -19,39 +19,25 @@
         [topViewController dismissViewControllerAnimated:YES completion:nil];
     }
 
-    - (void)userCanceledScanWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController  API_AVAILABLE(ios(11.2)){
-        [self dismissView];
-        self.resolve(@{ @"action": @"canceled",
-                        @"canceledReason": @"user_canceled"
-                     });
+- (void)fraudModelResultsVerifyCardWithViewController:(VerifyCardViewController * _Nonnull)viewController creditCard:(CreditCard * _Nonnull)creditCard encryptedPayload:(NSString * _Nullable)encryptedPayload extraData:(NSDictionary<NSString *,id> * _Nonnull)extraData {
+    [self dismissView];
+    self.resolve(@{@"action" : @"scanned",
+                   @"payload": @{
+                       @"number": creditCard.number,
+                       @"cardholderName": creditCard.name ?: [NSNull null],
+                       @"expiryMonth": creditCard.expiryMonth ?: [NSNull null],
+                       @"expiryYear": creditCard.expiryYear ?: [NSNull null],
+                       @"payloadVersion": @"1",
+                       @"verificationPayload": encryptedPayload ?: [NSNull null]
+                    }});
+}
 
-    }
+- (void)userCanceledVerifyCardWithViewController:(VerifyCardViewController * _Nonnull)viewController {
+    [self dismissView];
+    self.resolve(@{ @"action": @"canceled",
+                    @"canceledReason": @"user_canceled"});
+}
 
-    - (void)userDidScanCardWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController number:(NSString * _Nonnull)number name:(NSString * _Nullable)name expiryYear:(NSString * _Nullable)expiryYear expiryMonth:(NSString * _Nullable)expiryMonth payload:(NSString * _Nullable)payload  API_AVAILABLE(ios(11.2)){
-        [self dismissView];
-        self.resolve(@{@"action" : @"scanned",
-                       @"payload": @{
-                           @"number": number,
-                           @"cardholderName": name ?: [NSNull null],
-                           @"expiryMonth": expiryMonth ?: [NSNull null],
-                           @"expiryYear": expiryYear ?: [NSNull null],
-                           @"payloadVersion": @"1",
-                           @"verificationPayload": payload ?: [NSNull null]
-                       }
-                   });
-    }
-
-    - (void)userMissingCardWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController  API_AVAILABLE(ios(11.2)){
-        [self dismissView];
-        self.resolve(@{ @"action": @"canceled",
-                        @"canceledReason": @"user_missing_card"
-                     });
-    }
-
-    - (void)userDidSkipWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController {
-        [self dismissView];
-        self.resolve(@{ @"action": @"skipped" });
-    }
 @end
 
 //MARK: -RNCardVerify Module Implementation
@@ -76,7 +62,7 @@ RCT_EXPORT_METHOD(isSupportedAsync:(RCTPromiseResolveBlock)resolve :(RCTPromiseR
     resolve(@([Bouncer isCompatible]));
 }
 
-RCT_EXPORT_METHOD(scan:(NSString * _Nullable)requiredIin requiredLastFour:(NSString * _Nullable)requiredLastFour :(RCTPromiseResolveBlock)resolve :(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(scan:(NSString * _Nullable)requiredIin requiredLastFour:(NSString * _Nullable)requiredLastFour skipVerificationOnModelDownloadFailure:(BOOL)skipVerificationOnModelDownloadFailure  :(RCTPromiseResolveBlock)resolve :(RCTPromiseRejectBlock)reject)
 {
     [self.verifyViewDelegate setCallback:resolve];
 
@@ -88,8 +74,9 @@ RCT_EXPORT_METHOD(scan:(NSString * _Nullable)requiredIin requiredLastFour:(NSStr
                 topViewController = topViewController.presentedViewController;
             }
             
-            UIViewController *vc = [Bouncer createVerifyViewControllerWithLast4:requiredLastFour iin:requiredIin withDelegate:self.verifyViewDelegate];
-
+            VerifyCardViewController *vc = [[VerifyCardViewController alloc] initWithUserId:nil lastFour:requiredLastFour bin:requiredIin];
+            vc.verifyCardDelegate = self.verifyViewDelegate;
+            
             [topViewController presentViewController:vc animated:NO completion:nil];
         } else {
             // Fallback on earlier versions

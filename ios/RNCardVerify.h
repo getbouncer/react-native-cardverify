@@ -1,7 +1,7 @@
 #import <React/RCTBridgeModule.h>
 @import CardVerify;
 
-@interface VerifyViewDelegate : NSObject <CardVerifySimpleResults>
+@interface VerifyViewDelegate : NSObject <VerifyCardResult>
 
 @property RCTPromiseResolveBlock resolve;
 
