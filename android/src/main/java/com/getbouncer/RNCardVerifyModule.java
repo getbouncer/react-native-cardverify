@@ -10,9 +10,9 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
-import com.getbouncer.cardverify.ui.CardVerifyActivity;
-import com.getbouncer.cardverify.ui.base.CardVerifyActivityResult;
-import com.getbouncer.cardverify.ui.CardVerifyActivityResultHandler;
+import com.getbouncer.cardverify.ui.network.CardVerifyActivity;
+import com.getbouncer.cardverify.ui.network.CardVerifyActivityResult;
+import com.getbouncer.cardverify.ui.network.CardVerifyActivityResultHandler;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
