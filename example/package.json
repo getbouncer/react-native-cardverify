@@ -25,15 +25,18 @@
     "jsc-android": "^241213.1.0",
     "react": "16.13.1",
     "react-native": "0.63.0",
-    "react-native-cardverify": "file:react-native-cardverify-1.0.32.tgz",
+    "react-native-cardverify": "file:react-native-cardverify-1.0.33.tgz",
     "react-native-credit-card-input": "^0.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
     "@babel/runtime": "^7.10.4",
     "babel-jest": "^24.9.0",
+    "jail-monkey": "^2.3.3",
     "jest": "^24.9.0",
-    "metro-react-native-babel-preset": "^0.57.0"
+    "metro-react-native-babel-preset": "^0.57.0",
+    "react-native-haptic-feedback": "^1.11.0",
+    "react-native-permissions": "^3.0.0"
   },
   "jest": {
     "preset": "react-native"
