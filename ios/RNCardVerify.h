@@ -1,7 +1,16 @@
 #import <React/RCTBridgeModule.h>
 @import CardVerify;
 
-@interface VerifyViewDelegate : NSObject <CardVerifySimpleResults>
+@interface VerifyCardDelegate : NSObject <VerifyCardResult>
+
+@property RCTPromiseResolveBlock resolve;
+
+- (void)setCallback:(RCTPromiseResolveBlock)resolve;
+- (void)dismissView;
+
+@end
+
+@interface VerifyCardAddDelegate : NSObject <VerifyCardAddResult>
 
 @property RCTPromiseResolveBlock resolve;
 
@@ -12,6 +21,7 @@
 
 @interface RNCardVerify : NSObject <RCTBridgeModule>
 
-@property (nonatomic) VerifyViewDelegate * verifyViewDelegate;
+@property (nonatomic) VerifyCardDelegate * verifyCardDelegate;
+@property (nonatomic) VerifyCardAddDelegate * verifyCardAddDelegate;
 
 @end
