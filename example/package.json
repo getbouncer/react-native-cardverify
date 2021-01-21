@@ -22,11 +22,14 @@
   },
   "dependencies": {
     "hermesvm": "^0.1.1",
+    "jail-monkey": "^2.3.3",
     "jsc-android": "^241213.1.0",
     "react": "16.13.1",
     "react-native": "0.63.0",
     "react-native-cardverify": "file:react-native-cardverify-1.0.32.tgz",
-    "react-native-credit-card-input": "^0.4.1"
+    "react-native-credit-card-input": "^0.4.1",
+    "react-native-haptic-feedback": "^1.11.0",
+    "react-native-permissions": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
