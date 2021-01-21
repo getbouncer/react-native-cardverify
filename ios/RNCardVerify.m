@@ -3,8 +3,8 @@
 @import Foundation;
 @import CardVerify;
 
-//MARK: - Verify View Delegate Implementation
-@implementation VerifyViewDelegate
+//MARK: - Verify Card Delegate Implementation
+@implementation VerifyCardDelegate
     - (void)setCallback:(RCTPromiseResolveBlock)resolve {
         self.resolve = resolve;
     }
@@ -19,39 +19,70 @@
         [topViewController dismissViewControllerAnimated:YES completion:nil];
     }
 
-    - (void)userCanceledScanWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController  API_AVAILABLE(ios(11.2)){
-        [self dismissView];
-        self.resolve(@{ @"action": @"canceled",
-                        @"canceledReason": @"user_canceled"
-                     });
+- (void)fraudModelResultsVerifyCardWithViewController:(VerifyCardViewController * _Nonnull)viewController creditCard:(CreditCard * _Nonnull)creditCard encryptedPayload:(NSString * _Nullable)encryptedPayload extraData:(NSDictionary<NSString *,id> * _Nonnull)extraData  API_AVAILABLE(ios(11.2)){
+    [self dismissView];
+    self.resolve(@{@"action" : @"scanned",
+                   @"payload": @{
+                       @"number": creditCard.number,
+                       @"cardholderName": creditCard.name ?: [NSNull null],
+                       @"expiryMonth": creditCard.expiryMonth ?: [NSNull null],
+                       @"expiryYear": creditCard.expiryYear ?: [NSNull null],
+                       @"payloadVersion": @"1",
+                       @"verificationPayload": encryptedPayload ?: [NSNull null]
+                    }});
+}
 
-    }
+- (void)userCanceledVerifyCardWithViewController:(VerifyCardViewController * _Nonnull)viewController  API_AVAILABLE(ios(11.2)){
+    [self dismissView];
+    self.resolve(@{ @"action": @"canceled",
+                    @"canceledReason": @"user_canceled"});
+}
+@end
 
-    - (void)userDidScanCardWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController number:(NSString * _Nonnull)number name:(NSString * _Nullable)name expiryYear:(NSString * _Nullable)expiryYear expiryMonth:(NSString * _Nullable)expiryMonth payload:(NSString * _Nullable)payload  API_AVAILABLE(ios(11.2)){
-        [self dismissView];
-        self.resolve(@{@"action" : @"scanned",
-                       @"payload": @{
-                           @"number": number,
-                           @"cardholderName": name ?: [NSNull null],
-                           @"expiryMonth": expiryMonth ?: [NSNull null],
-                           @"expiryYear": expiryYear ?: [NSNull null],
-                           @"payloadVersion": @"1",
-                           @"verificationPayload": payload ?: [NSNull null]
-                       }
-                   });
-    }
+//MARK: - Verify Card Add Delegate Implementation
+@implementation VerifyCardAddDelegate
 
-    - (void)userMissingCardWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController  API_AVAILABLE(ios(11.2)){
-        [self dismissView];
-        self.resolve(@{ @"action": @"canceled",
-                        @"canceledReason": @"user_missing_card"
-                     });
-    }
+- (void)setCallback:(RCTPromiseResolveBlock)resolve {
+    self.resolve = resolve;
+}
 
-    - (void)userDidSkipWithViewController:(VerifyCardSimpleViewController * _Nonnull)viewController {
-        [self dismissView];
-        self.resolve(@{ @"action": @"skipped" });
+- (void)dismissView {
+    UIViewController *topViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+
+    while (topViewController.presentedViewController) {
+        topViewController = topViewController.presentedViewController;
     }
+    
+    [topViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)userDidCancelCardAdd:(UIViewController * _Nonnull)viewController API_AVAILABLE(ios(11.2)){
+    [self dismissView];
+    self.resolve(@{ @"action": @"canceled",
+                    @"canceledReason": @"user_canceled"});
+}
+
+- (void)userDidPressManualCardAdd:(UIViewController * _Nonnull)viewController API_AVAILABLE(ios(11.2)){
+    [self dismissView];
+    self.resolve(@{ @"action": @"skipped" });
+}
+
+- (void)userDidScanCardAdd:(UIViewController * _Nonnull)viewController creditCard:(CreditCard * _Nonnull)creditCard API_AVAILABLE(ios(11.2)){
+}
+
+-(void)fraudModelResultsVerifyCardAddWithViewController:(UIViewController *)viewController creditCard:(CreditCard *)creditCard encryptedPayload:(NSString *)encryptedPayload extraData:(NSDictionary<NSString *,id> *)extraData API_AVAILABLE(ios(11.2)){
+    [self dismissView];
+    self.resolve(@{@"action" : @"scanned",
+                   @"payload": @{
+                       @"number": creditCard.number,
+                       @"cardholderName": creditCard.name ?: [NSNull null],
+                       @"expiryMonth": creditCard.expiryMonth ?: [NSNull null],
+                       @"expiryYear": creditCard.expiryYear ?: [NSNull null],
+                       @"payloadVersion": @"1",
+                       @"verificationPayload": encryptedPayload ?: [NSNull null]
+                    }});
+}
+
 @end
 
 //MARK: -RNCardVerify Module Implementation
@@ -64,7 +95,8 @@
 
 - (id)init {
     if(self = [super init]) {
-        self.verifyViewDelegate = [[VerifyViewDelegate alloc] init];
+        self.verifyCardDelegate = [[VerifyCardDelegate alloc] init];
+        self.verifyCardAddDelegate = [[VerifyCardAddDelegate alloc] init];
     }
     return self;
 }
@@ -76,9 +108,11 @@ RCT_EXPORT_METHOD(isSupportedAsync:(RCTPromiseResolveBlock)resolve :(RCTPromiseR
     resolve(@([Bouncer isCompatible]));
 }
 
-RCT_EXPORT_METHOD(scan:(NSString * _Nullable)requiredIin requiredLastFour:(NSString * _Nullable)requiredLastFour :(RCTPromiseResolveBlock)resolve :(RCTPromiseRejectBlock)reject)
+
+RCT_EXPORT_METHOD(scan:(NSString * _Nullable)requiredIin requiredLastFour:(NSString * _Nullable)requiredLastFour skipVerificationOnModelDownloadFailure:(BOOL)skipVerificationOnModelDownloadFailure  :(RCTPromiseResolveBlock)resolve :(RCTPromiseRejectBlock)reject)
 {
-    [self.verifyViewDelegate setCallback:resolve];
+    [self.verifyCardDelegate setCallback:resolve];
+    [self.verifyCardAddDelegate setCallback:resolve];
 
     dispatch_async(dispatch_get_main_queue(), ^{
         if (@available(iOS 11.2, *)) {
@@ -88,11 +122,15 @@ RCT_EXPORT_METHOD(scan:(NSString * _Nullable)requiredIin requiredLastFour:(NSStr
                 topViewController = topViewController.presentedViewController;
             }
             
-            UIViewController *vc = [Bouncer createVerifyViewControllerWithLast4:requiredLastFour iin:requiredIin withDelegate:self.verifyViewDelegate];
-
-            [topViewController presentViewController:vc animated:NO completion:nil];
-        } else {
-            // Fallback on earlier versions
+            if (requiredIin == NULL && requiredLastFour == NULL) {
+                VerifyCardAddViewController *vc = [[VerifyCardAddViewController alloc] initWithUserId:@""];
+                vc.cardAddDelegate = self.verifyCardAddDelegate;
+                [topViewController presentViewController:vc animated:NO completion:nil];
+            } else {
+                VerifyCardViewController *vc = [[VerifyCardViewController alloc] initWithUserId:nil lastFour:requiredLastFour bin:requiredIin];
+                vc.verifyCardDelegate = self.verifyCardDelegate;
+                [topViewController presentViewController:vc animated:NO completion:nil];
+            }
         }
     });
 }
