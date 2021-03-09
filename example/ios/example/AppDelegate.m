@@ -32,6 +32,22 @@
   [Bouncer configureWithApiKey:@"ENTER_API_KEY"];
   Bouncer.useServerImageAnalysis = YES;
   Bouncer.useFlashFlow = YES;
+  
+  if (@available(iOS 11.2, *)) {
+    VerifyCardAddViewController.descriptionString = @"description text";
+    VerifyCardAddViewController.enableCameraPermissionString = @"enable camera";
+    VerifyCardAddViewController.enableCameraPermissionsDescriptionString = @"enable camera description";
+    VerifyCardAddViewController.torchButtonString = @"torch";
+    VerifyCardAddViewController.closeButtonString = @"close";
+    VerifyCardAddViewController.manualCardEntryText = @"manual entry";
+    
+    VerifyCardViewController.descriptionString = @"description text";
+    VerifyCardViewController.enableCameraPermissionString = @"enable camera";
+    VerifyCardViewController.enableCameraPermissionsDescriptionString = @"enable camera description";
+    VerifyCardViewController.torchButtonString = @"torch";
+    VerifyCardViewController.closeButtonString = @"close";
+    VerifyCardViewController.wrongCardString = @"wrong card";
+  }
 
   return YES;
 }
