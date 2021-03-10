@@ -25,7 +25,7 @@ jobs:
         run: |
           sed -i -E 's/^  "version": "[^"]+",$/  "version": "'"$TAG_VERSION"'",/g' package.json
           cat package.json
-          sed -i -E 's/^    "react-native-cardverify": "[^"]+",$/    "react-native-cardverify": "file:react-native-cardverify-$TAG_VERSION.tgz",/g' example/package.json
+          sed -i -E 's/^    "react-native-cardverify": "[^"]+",$/    "react-native-cardverify": "file:react-native-cardverify-'"$TAG_VERSION"'.tgz",/g' example/package.json
           cat example/package.json
 
       - name: update package lock
