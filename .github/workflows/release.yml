@@ -35,7 +35,7 @@ jobs:
       - name: update example package lock
         run: |
           cd example
-          npm package ..
+          npm pack ..
           npm update
           npm install
           cd ..
