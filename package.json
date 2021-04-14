@@ -36,8 +36,8 @@
     "react-native": ">=0.59.0-rc.0 <1.0.x"
   },
   "devDependencies": {
-    "react": "17.0.1",
-    "react-native": "0.64.0"
+    "react": "^16.13.1",
+    "react-native": "^0.63.3"
   },
   "bugs": {
     "url": "https://github.com/getbouncer/react-native-cardverify/issues"
