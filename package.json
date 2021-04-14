@@ -32,7 +32,7 @@
   "license": "SEE LICENSE IN LICENSE FILE",
   "licenseFilename": "LICENSE",
   "peerDependencies": {
-    "react": ">=16.8.1 <17.x",
+    "react": "^17.0.1",
     "react-native": ">=0.59.0-rc.0 <1.0.x"
   },
   "devDependencies": {
@@ -44,5 +44,8 @@
   },
   "directories": {
     "example": "example"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.13.15"
   }
 }
