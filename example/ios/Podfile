@@ -21,7 +21,7 @@ target 'example' do
   pod 'RNReactNativeHapticFeedback', :path => '../node_modules/react-native-haptic-feedback'
   
   # bouncer
-  pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/<API_KEY>/cardverify-ios-2.0.12.tgz'
+  pod 'CardVerify', :http => 'https://api.getbouncer.com/v1/downloads/sdk/card_verify/1JqZ_TgNWQNbuXmCSoXD36uqQhnlc8eW/cardverify-ios-2.0.12.tgz'
   pod 'react-native-cardverify', :path => '../node_modules/react-native-cardverify/react-native-cardverify.podspec'
   pod 'jail-monkey', :path => '../node_modules/jail-monkey'
   dynamic_frameworks = ['CardVerify']

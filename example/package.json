@@ -22,21 +22,22 @@
   },
   "dependencies": {
     "hermesvm": "^0.1.1",
-    "jsc-android": "^241213.1.0",
-    "react": "16.13.1",
-    "react-native": "0.63.3",
+    "jsc-android": "^241213.2.0",
+    "react": "17.0.1",
+    "react-native": "0.64.0",
     "react-native-cardverify": "file:react-native-cardverify-1.0.36.tgz",
-    "react-native-credit-card-input": "^0.4.1"
+    "react-native-credit-card-input": "^0.4.1",
+    "react-native-windows": "^0.64.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
+    "@babel/core": "^7.13.15",
     "@babel/runtime": "^7.10.4",
     "babel-jest": "^24.9.0",
     "jail-monkey": "^2.3.3",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.57.0",
     "react-native-haptic-feedback": "^1.11.0",
-    "react-native-permissions": "^3.0.0"
+    "react-native-permissions": "^3.0.1"
   },
   "jest": {
     "preset": "react-native"
