@@ -30,8 +30,6 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   [Bouncer configureWithApiKey:@"ENTER_API_KEY"];
-  Bouncer.useServerImageAnalysis = YES;
-  Bouncer.useFlashFlow = YES;
   
   if (@available(iOS 11.2, *)) {
     VerifyCardAddViewController.descriptionString = @"description text";
