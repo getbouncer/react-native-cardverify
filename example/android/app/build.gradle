@@ -135,6 +135,9 @@ android {
             }
         }
     }
+    aaptOptions {
+        noCompress "tflite"
+    }
 }
 
 project.ext.react = [
