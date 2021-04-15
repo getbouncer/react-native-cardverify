@@ -47,6 +47,5 @@ public class MainApplication extends Application implements ReactApplication {
     RNCardVerifyModule.apiKey = "<your_api_key_here>";
     RNCardVerifyModule.enableNameExtraction = true;
     RNCardVerifyModule.enableExpiryExtraction = true;
-    RNCardVerifyModule.useLocalVerificationOnly = true;
   }
 }
