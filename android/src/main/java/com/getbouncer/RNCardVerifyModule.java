@@ -73,7 +73,6 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
                             cardMap.putString("verificationPayload", null);
                             cardMap.putBoolean("isCardValid", isCardValid);
                             cardMap.putString("cardValidationFailureReason", cardValidationFailureReason);
-                            cardMap.putString("cardValidationDetails", cardValidationDetails);
 
                             final WritableMap map = new WritableNativeMap();
                             map.putString("action", "scanned");
