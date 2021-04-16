@@ -13,6 +13,7 @@ import com.facebook.react.bridge.WritableNativeMap;
 import com.getbouncer.cardverify.ui.network.CardVerifyActivity;
 import com.getbouncer.cardverify.ui.network.CardVerifyActivityResult;
 import com.getbouncer.cardverify.ui.network.CardVerifyActivityResultHandler;
+import com.getbouncer.scan.payment.card.PaymentCardUtils;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -25,6 +26,7 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     public static boolean enableMissingCard = true;
     public static boolean enableExpiryExtraction = true;
     public static boolean enableNameExtraction = true;
+    public static boolean useLocalVerificationOnly = false;
 
     private final ReactApplicationContext reactContext;
 
@@ -32,7 +34,11 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
 
     @Override
     public void initialize() {
-        CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction);
+        if (useLocalVerificationOnly) {
+            com.getbouncer.cardverify.ui.local.CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction);
+        } else {
+            CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction);
+        }
     }
 
     public RNCardVerifyModule(ReactApplicationContext reactContext) {
@@ -42,7 +48,115 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
 
             @Override
             public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-                if (requestCode == SCAN_REQUEST_CODE) {
+                if (requestCode == SCAN_REQUEST_CODE && useLocalVerificationOnly) {
+                    com.getbouncer.cardverify.ui.local.CardVerifyActivity.parseVerifyResult(resultCode, data, new com.getbouncer.cardverify.ui.local.CardVerifyActivityResultHandler() {
+                        @Override
+                        public void cardScanned(
+                            @NotNull String cardPan,
+                            @Nullable String cardName,
+                            @Nullable String cardExpiryMonth,
+                            @Nullable String cardExpiryYear,
+                            boolean isCardValid,
+                            @Nullable String cardValidationFailureReason,
+                            @Nullable String cardValidationDetails
+                        ) {
+                            final String issuer = PaymentCardUtils.getCardIssuer(cardPan).getDisplayName();
+                            final WritableMap cardMap = new WritableNativeMap();
+                            cardMap.putString("number", cardPan);
+                            cardMap.putString("expiryDay", null);
+                            cardMap.putString("expiryMonth", cardExpiryMonth);
+                            cardMap.putString("expiryYear", cardExpiryYear);
+                            cardMap.putString("issuer", issuer);
+                            cardMap.putString("cvc", null);
+                            cardMap.putString("cardholderName", cardName);
+                            cardMap.putString("payloadVersion", "2");
+                            cardMap.putString("verificationPayload", null);
+                            cardMap.putBoolean("isCardValid", isCardValid);
+                            cardMap.putString("cardValidationFailureReason", cardValidationFailureReason);
+
+                            final WritableMap map = new WritableNativeMap();
+                            map.putString("action", "scanned");
+                            map.putMap("payload", cardMap);
+
+                            if (scanPromise != null) {
+                                scanPromise.resolve(map);
+                                scanPromise = null;
+                            }
+                        }
+
+                        @Override
+                        public void userCanceled() {
+                            final WritableMap map = new WritableNativeMap();
+                            map.putString("action", "canceled");
+                            map.putString("canceledReason", "user_canceled");
+
+                            if (scanPromise != null) {
+                                scanPromise.resolve(map);
+                                scanPromise = null;
+                            }
+                        }
+
+                        @Override
+                        public void userMissingCard() {
+                            final WritableMap map = new WritableNativeMap();
+                            map.putString("action", "canceled");
+                            map.putString("canceledReason", "user_missing_card");
+
+                            if (scanPromise != null) {
+                                scanPromise.resolve(map);
+                                scanPromise = null;
+                            }
+                        }
+
+                        @Override
+                        public void enterManually() {
+                            final WritableMap map = new WritableNativeMap();
+                            map.putString("action", "canceled");
+                            map.putString("canceledReason", "enter_card_manually");
+
+                            if (scanPromise != null) {
+                                scanPromise.resolve(map);
+                                scanPromise = null;
+                            }
+                        }
+
+                        @Override
+                        public void cameraError() {
+                            final WritableMap map = new WritableNativeMap();
+                            map.putString("action", "canceled");
+                            map.putString("canceledReason", "camera_error");
+
+                            if (scanPromise != null) {
+                                scanPromise.resolve(map);
+                                scanPromise = null;
+                            }
+                        }
+
+                        @Override
+                        public void analyzerFailure() {
+                            final WritableMap map = new WritableNativeMap();
+                            map.putString("action", "canceled");
+                            map.putString("canceledReason", "fatal_error");
+
+                            if (scanPromise != null) {
+                                scanPromise.resolve(map);
+                                scanPromise = null;
+                            }
+                        }
+
+                        @Override
+                        public void canceledUnknown() {
+                            final WritableMap map = new WritableNativeMap();
+                            map.putString("action", "canceled");
+                            map.putString("canceledReason", "unknown");
+
+                            if (scanPromise != null) {
+                                scanPromise.resolve(map);
+                                scanPromise = null;
+                            }
+                        }
+                    });
+                } else if (requestCode == SCAN_REQUEST_CODE) {
                     CardVerifyActivity.parseVerifyResult(resultCode, data, new CardVerifyActivityResultHandler() {
                         @Override
                         public void cardScanned(
@@ -196,7 +310,19 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     public void scan(@Nullable String requiredCardIin, @Nullable String requiredCardLastFour, Boolean skipVerificationOnDownloadFailure, @NotNull Promise promise) {
         scanPromise = promise;
 
-        final Intent intent = CardVerifyActivity.buildIntent(
+        final Intent intent;
+        if (useLocalVerificationOnly) {
+            intent = com.getbouncer.cardverify.ui.local.CardVerifyActivity.buildIntent(
+                /* context */ this.reactContext.getApplicationContext(),
+                /* iin */ requiredCardIin,
+                /* lastFour */ requiredCardLastFour,
+                /* enableEnterCardManually */ enableEnterCardManually,
+                /* enableMissingCard */ enableMissingCard,
+                /* enableNameExtraction */ enableNameExtraction,
+                /* enableExpiryExtraction */ enableExpiryExtraction
+            );
+        } else {
+            intent = CardVerifyActivity.buildIntent(
                 /* context */ this.reactContext.getApplicationContext(),
                 /* apiKey */ apiKey,
                 /* iin */ requiredCardIin,
@@ -206,7 +332,8 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
                 /* enableNameExtraction */ enableNameExtraction,
                 /* enableExpiryExtraction */ enableExpiryExtraction,
                 /* skipVerificationOnDownloadFailure */ skipVerificationOnDownloadFailure
-        );
+            );
+        }
         this.reactContext.startActivityForResult(intent, SCAN_REQUEST_CODE, null);
     }
 }
