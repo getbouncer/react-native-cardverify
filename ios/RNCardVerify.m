@@ -21,15 +21,27 @@
 
 - (void)fraudModelResultsVerifyCardWithViewController:(VerifyCardViewController * _Nonnull)viewController creditCard:(CreditCard * _Nonnull)creditCard encryptedPayload:(NSString * _Nullable)encryptedPayload extraData:(NSDictionary<NSString *,id> * _Nonnull)extraData  API_AVAILABLE(ios(11.2)){
     [self dismissView];
-    self.resolve(@{@"action" : @"scanned",
-                   @"payload": @{
-                       @"number": creditCard.number,
-                       @"cardholderName": creditCard.name ?: [NSNull null],
-                       @"expiryMonth": creditCard.expiryMonth ?: [NSNull null],
-                       @"expiryYear": creditCard.expiryYear ?: [NSNull null],
-                       @"payloadVersion": @"1",
-                       @"verificationPayload": encryptedPayload ?: [NSNull null]
-                    }});
+    
+    NSMutableDictionary *resolveDict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *payloadDict = [[NSMutableDictionary alloc] init];
+    resolveDict[@"action"] = @"scanned";
+    
+    payloadDict[@"number"] = creditCard.number;
+    payloadDict[@"cardholderName"] = creditCard.name ?: [NSNull null];
+    payloadDict[@"expiryMonth"] = creditCard.expiryMonth ?: [NSNull null];
+    payloadDict[@"expiryYear"] = creditCard.expiryYear ?: [NSNull null];
+    payloadDict[@"payloadVersion"] = @"1";
+    
+    if (Bouncer.useLocalVerificationOnly) {
+        payloadDict[@"verificationPayload"] = [NSNull null];
+        payloadDict[@"isCardValid"] = extraData[@"isCardValid"];
+        payloadDict[@"cardValidationFailureReason"] = extraData[@"validationFailureReason"] ?: [NSNull null];
+    } else {
+        payloadDict[@"verificationPayload"] = encryptedPayload ?: [NSNull null];
+    }
+    
+    resolveDict[@"payload"] = payloadDict;
+    self.resolve(resolveDict);
 }
 
 - (void)userCanceledVerifyCardWithViewController:(VerifyCardViewController * _Nonnull)viewController  API_AVAILABLE(ios(11.2)){
@@ -72,15 +84,27 @@
 
 -(void)fraudModelResultsVerifyCardAddWithViewController:(UIViewController *)viewController creditCard:(CreditCard *)creditCard encryptedPayload:(NSString *)encryptedPayload extraData:(NSDictionary<NSString *,id> *)extraData API_AVAILABLE(ios(11.2)){
     [self dismissView];
-    self.resolve(@{@"action" : @"scanned",
-                   @"payload": @{
-                       @"number": creditCard.number,
-                       @"cardholderName": creditCard.name ?: [NSNull null],
-                       @"expiryMonth": creditCard.expiryMonth ?: [NSNull null],
-                       @"expiryYear": creditCard.expiryYear ?: [NSNull null],
-                       @"payloadVersion": @"1",
-                       @"verificationPayload": encryptedPayload ?: [NSNull null]
-                    }});
+    
+    NSMutableDictionary *resolveDict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *payloadDict = [[NSMutableDictionary alloc] init];
+    resolveDict[@"action"] = @"scanned";
+    
+    payloadDict[@"number"] = creditCard.number;
+    payloadDict[@"cardholderName"] = creditCard.name ?: [NSNull null];
+    payloadDict[@"expiryMonth"] = creditCard.expiryMonth ?: [NSNull null];
+    payloadDict[@"expiryYear"] = creditCard.expiryYear ?: [NSNull null];
+    payloadDict[@"payloadVersion"] = @"1";
+    
+    if (Bouncer.useLocalVerificationOnly) {
+        payloadDict[@"verificationPayload"] = [NSNull null];
+        payloadDict[@"isCardValid"] = extraData[@"isCardValid"];
+        payloadDict[@"cardValidationFailureReason"] = extraData[@"validationFailureReason"] ?: [NSNull null];
+    } else {
+        payloadDict[@"verificationPayload"] = encryptedPayload ?: [NSNull null];
+    }
+    
+    resolveDict[@"payload"] = payloadDict;
+    self.resolve(resolveDict);
 }
 
 @end
