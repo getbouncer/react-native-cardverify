@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.39](https://github.com/getbouncer/react-native-cardverify/tree/1.0.39) (2021-05-15)
+
+**Merged pull requests:**
+
+- Update example to add custom buttons [\#51](https://github.com/getbouncer/react-native-cardverify/pull/51) ([jaimejiyepark](https://github.com/jaimejiyepark))
+- Fix unit tests [\#50](https://github.com/getbouncer/react-native-cardverify/pull/50) ([awushensky](https://github.com/awushensky))
+
 ## [1.0.38](https://github.com/getbouncer/react-native-cardverify/tree/1.0.38) (2021-04-22)
 
 **Merged pull requests:**
@@ -35,6 +42,7 @@
 - Use new CardVerify 2.0.7 and update example r [\#35](https://github.com/getbouncer/react-native-cardverify/pull/35) ([jaimejiyepark](https://github.com/jaimejiyepark))
 - Allow skip verification on model download failure [\#34](https://github.com/getbouncer/react-native-cardverify/pull/34) ([awushensky](https://github.com/awushensky))
 - Use xcframeworks [\#33](https://github.com/getbouncer/react-native-cardverify/pull/33) ([awushensky](https://github.com/awushensky))
+- Bump version to 1.0.23 [\#31](https://github.com/getbouncer/react-native-cardverify/pull/31) ([awushensky](https://github.com/awushensky))
 
 ## [1.0.24](https://github.com/getbouncer/react-native-cardverify/tree/1.0.24) (2020-12-04)
 
@@ -46,7 +54,6 @@
 
 **Merged pull requests:**
 
-- Bump version to 1.0.23 [\#31](https://github.com/getbouncer/react-native-cardverify/pull/31) ([awushensky](https://github.com/awushensky))
 - Added curly brace [\#30](https://github.com/getbouncer/react-native-cardverify/pull/30) ([jaimejiyepark](https://github.com/jaimejiyepark))
 
 ## [1.0.21](https://github.com/getbouncer/react-native-cardverify/tree/1.0.21) (2020-11-11)
