@@ -68,7 +68,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "Automatic changelog update"
-          file_pattern: "package.json package-lock.json example/package.json example/package-lock.json CHANGELOG.md"
+          file_pattern: "package.json package-lock.json example/package.json CHANGELOG.md"
 
   publish-npm:
     needs: finalize_release
