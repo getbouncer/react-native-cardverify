@@ -15,7 +15,6 @@ jobs:
         with:
           ref: "master"
           token: ${{secrets.SERVICE_PERSONAL_ACCESS_TOKEN}}
-          submodules: recursive
 
       - name: get current tag
         id: get_tag

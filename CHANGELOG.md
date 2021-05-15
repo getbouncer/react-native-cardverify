@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.38](https://github.com/getbouncer/react-native-cardverify/tree/1.0.38) (2021-04-22)
+
+**Merged pull requests:**
+
+- Upgrade android version [\#49](https://github.com/getbouncer/react-native-cardverify/pull/49) ([awushensky](https://github.com/awushensky))
+
+## [1.0.37](https://github.com/getbouncer/react-native-cardverify/tree/1.0.37) (2021-04-16)
+
+**Merged pull requests:**
+
+- Add local verification result to iOS [\#48](https://github.com/getbouncer/react-native-cardverify/pull/48) ([jaimejiyepark](https://github.com/jaimejiyepark))
+- Remove strict react dependency [\#47](https://github.com/getbouncer/react-native-cardverify/pull/47) ([awushensky](https://github.com/awushensky))
+- Support local android verification [\#46](https://github.com/getbouncer/react-native-cardverify/pull/46) ([awushensky](https://github.com/awushensky))
+- Change card input package which was causing issue [\#45](https://github.com/getbouncer/react-native-cardverify/pull/45) ([jaimejiyepark](https://github.com/jaimejiyepark))
+- Fixing peer dependency react issue [\#44](https://github.com/getbouncer/react-native-cardverify/pull/44) ([jaimejiyepark](https://github.com/jaimejiyepark))
+
 ## [1.0.36](https://github.com/getbouncer/react-native-cardverify/tree/1.0.36) (2021-03-10)
 
 **Merged pull requests:**
@@ -25,7 +41,6 @@
 **Merged pull requests:**
 
 - Upgrade native libraries [\#32](https://github.com/getbouncer/react-native-cardverify/pull/32) ([awushensky](https://github.com/awushensky))
-- Upgrade android native [\#25](https://github.com/getbouncer/react-native-cardverify/pull/25) ([awushensky](https://github.com/awushensky))
 
 ## [1.0.23](https://github.com/getbouncer/react-native-cardverify/tree/1.0.23) (2020-11-25)
 
@@ -42,6 +57,7 @@
 - Add manual card check on iOS [\#28](https://github.com/getbouncer/react-native-cardverify/pull/28) ([jaimejiyepark](https://github.com/jaimejiyepark))
 - Update native libraries [\#27](https://github.com/getbouncer/react-native-cardverify/pull/27) ([awushensky](https://github.com/awushensky))
 - Fix NPE [\#26](https://github.com/getbouncer/react-native-cardverify/pull/26) ([awushensky](https://github.com/awushensky))
+- Upgrade android native [\#25](https://github.com/getbouncer/react-native-cardverify/pull/25) ([awushensky](https://github.com/awushensky))
 - Upgrade native libraries [\#24](https://github.com/getbouncer/react-native-cardverify/pull/24) ([awushensky](https://github.com/awushensky))
 - Upgrade cardverify [\#23](https://github.com/getbouncer/react-native-cardverify/pull/23) ([awushensky](https://github.com/awushensky))
 - Update cardverify [\#22](https://github.com/getbouncer/react-native-cardverify/pull/22) ([awushensky](https://github.com/awushensky))
