@@ -31,6 +31,7 @@ buildscript {
         repositories {
             mavenCentral()
             google()
+            jcenter()
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:4.0.1'
@@ -70,6 +71,7 @@ repositories {
         url "$rootDir/../node_modules/jsc-android/dist"
     }
     google()
+    jcenter()
 }
 
 dependencies {
