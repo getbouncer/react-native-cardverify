@@ -9,9 +9,8 @@ buildscript {
         supportLibVersion = "29.0.0"
     }
     repositories {
-        google()
-        jcenter()
         mavenCentral()
+        google()
     }
     dependencies {
         classpath("com.android.tools.build:gradle:4.0.0")
@@ -33,14 +32,6 @@ allprojects {
             // Android JSC is installed from npm
             url "$rootDir/../node_modules/jsc-android/dist"
         }
-        maven {
-            url "https://bouncerpaid.bintray.com/cardverify-ui-android"
-            credentials {
-                username "<FILL_IN_YOUR_USERNAME>"
-                password "<FILL_IN_YOUR_PASSWORD>"
-            }
-        }
         google()
-        jcenter()
     }
 }

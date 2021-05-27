@@ -31,7 +31,6 @@ buildscript {
         repositories {
             mavenCentral()
             google()
-            jcenter()
         }
         dependencies {
             classpath 'com.android.tools.build:gradle:4.0.1'
@@ -71,7 +70,6 @@ repositories {
         url "$rootDir/../node_modules/jsc-android/dist"
     }
     google()
-    jcenter()
 }
 
 dependencies {
@@ -79,8 +77,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.facebook.react:react-native:+'  // From node_modules
 
-    implementation "com.getbouncer:cardverify-ui:2.0.0084"
-    implementation "com.getbouncer:scan-payment-base:2.0.0084"
+    implementation "com.getbouncer:cardverify-ui:2.0.0089"
+    implementation "com.getbouncer:scan-payment-base:2.0.0089"
 }
 
 def configureReactNativePom(def pom) {
