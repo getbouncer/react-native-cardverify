@@ -16,5 +16,4 @@ RCT_EXTERN_METHOD(scan:(NSString * _Nullable)requiredIin
                   :(BOOL)skipVerificationOnModelDownloadFailure
                   :(RCTPromiseResolveBlock)resolve
                   :(RCTPromiseRejectBlock)reject)
-RCT_EXTERN_METHOD(testExportFunction: (RCTResponseSenderBlock)callback)
 @end

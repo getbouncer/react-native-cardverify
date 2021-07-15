@@ -61,10 +61,6 @@ class RNCardVerify: NSObject {
         }
     }
     
-    @objc func testExportFunction(_ callback: RCTResponseSenderBlock) {
-        callback(["please PLEASE WORKKKKKKKK"])
-    }
-    
     func getTopViewController() -> UIViewController? {
         var topViewController = UIApplication.shared.keyWindow?.rootViewController
         
@@ -93,33 +89,32 @@ extension RNCardVerify: VerifyCardResult {
     }
 
     func fraudModelResultsVerifyCard(viewController: VerifyCardViewController, creditCard: CreditCard, encryptedPayload: String?, extraData: [String : Any]) {
+      if let topViewController = getTopViewController() {
+        topViewController.dismiss(animated: true, completion: nil)
+      }
+
+      var resolvePayload: [String: Any] = [:]
+      resolvePayload["action"] = "scanned"
+      resolvePayload["payload"] = {
+        var payload: [String: Any] = [:]
+        payload["number"] = creditCard.number
+        payload["cardholderName"] = creditCard.name
+        payload["expiryMonth"] = creditCard.expiryMonth
+        payload["expiryYear"] = creditCard.expiryYear
+        payload["payloadVersion"] = "1"
         
-        if let topViewController = getTopViewController() {
-            topViewController.dismiss(animated: true, completion: nil)
+        if Bouncer.useLocalVerificationOnly {
+          payload["isCardValid"] = extraData["isCardValid"]
+          payload["cardValidationFailureReason"] = extraData["validationFailureReason"]
+        } else {
+          payload["verificationPayload"] = encryptedPayload
         }
-        
-        var resolvePayload: [String: Any] = [:]
-        resolvePayload["action"] = "scanned"
-        resolvePayload["payload"] = {
-            var payload: [String: Any] = [:]
-            payload["number"] = creditCard.number
-            payload["cardholderName"] = creditCard.name
-            payload["expiryMonth"] = creditCard.expiryMonth
-            payload["expiryYear"] = creditCard.expiryYear
-            payload["payloadVersion"] = "1"
-            
-            if Bouncer.useLocalVerificationOnly {
-                payload["isCardValid"] = extraData["isCardValid"]
-                payload["cardValidationFailureReason"] = extraData["validationFailureReason"]
-            } else {
-                payload["verificationPayload"] = encryptedPayload
-            }
-            return payload
-        }()
-        
-        if let resolve = self.resolve {
-            resolve(resolvePayload)
-        }
+        return payload
+      }()
+
+      if let resolve = self.resolve {
+        resolve(resolvePayload)
+      }
     }
 }
 
@@ -139,7 +134,32 @@ extension RNCardVerify: VerifyCardAddResult {
     }
 
     func userDidScanCardAdd(_ viewController: UIViewController, creditCard: CreditCard) {
-        return
+      if let topViewController = getTopViewController() {
+        topViewController.dismiss(animated: true, completion: nil)
+      }
+
+      var resolvePayload: [String: Any] = [:]
+      resolvePayload["action"] = "scanned"
+      resolvePayload["payload"] = {
+        var payload: [String: Any] = [:]
+        payload["number"] = creditCard.number
+        payload["cardholderName"] = creditCard.name
+        payload["expiryMonth"] = creditCard.expiryMonth
+        payload["expiryYear"] = creditCard.expiryYear
+        payload["payloadVersion"] = "1"
+
+        if Bouncer.useLocalVerificationOnly {
+          payload["isCardValid"] = extraData["isCardValid"]
+          payload["cardValidationFailureReason"] = extraData["validationFailureReason"]
+        } else {
+          payload["verificationPayload"] = encryptedPayload
+        }
+        return payload
+      }()
+
+      if let resolve = self.resolve {
+        resolve(resolvePayload)
+      }
     }
 
     func userDidPressManualCardAdd(_ viewController: UIViewController) {
@@ -148,10 +168,7 @@ extension RNCardVerify: VerifyCardAddResult {
         }
 
         if let resolve = resolve {
-            resolve([
-                "action": "skipped"
-            ])
+            resolve(["action": "skipped"])
         }
-        return
     }
 }
