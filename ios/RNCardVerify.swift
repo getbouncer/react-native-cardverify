@@ -26,7 +26,7 @@ class RNCardVerify: NSObject {
         _ resolve: RCTPromiseResolveBlock,
         _ reject: RCTPromiseRejectBlock
     ) -> Void {
-        if Bouncer.isCompatible() {
+        if true {
             resolve([Bouncer.isCompatible])
         } else {
             reject(nil, nil, nil)
@@ -40,25 +40,25 @@ class RNCardVerify: NSObject {
         _ resolve: @escaping RCTPromiseResolveBlock,
         _ reject: RCTPromiseRejectBlock
     ) -> Void {
-        self.resolve = resolve
+      self.resolve = resolve
+      
+      DispatchQueue.main.async {
+        let topViewController = self.getTopViewController()
         
-        DispatchQueue.main.async {
-            let topViewController = self.getTopViewController()
-            
-            if let lastFour = requiredLastFour as String? {
-                let vc = VerifyCardViewController(
-                    userId: "",
-                    lastFour: lastFour,
-                    bin: requiredIin as String?
-                )
-                vc.verifyCardDelegate = self
-                topViewController?.present(vc, animated: true, completion: nil)
-            } else {
-                let vc = VerifyCardAddViewController(userId: "")
-                vc.cardAddDelegate = self
-                topViewController?.present(vc, animated: true, completion: nil)
-            }
+        if let lastFour = requiredLastFour as String? {
+          let vc = VerifyCardViewController(
+            userId: "",
+            lastFour: lastFour,
+            bin: requiredIin as String?
+          )
+          vc.verifyCardDelegate = self
+          topViewController?.present(vc, animated: true, completion: nil)
+        } else {
+          let vc = VerifyCardAddViewController(userId: "")
+          vc.cardAddDelegate = self
+          topViewController?.present(vc, animated: true, completion: nil)
         }
+      }
     }
     
     func getTopViewController() -> UIViewController? {
@@ -134,32 +134,6 @@ extension RNCardVerify: VerifyCardAddResult {
     }
 
     func userDidScanCardAdd(_ viewController: UIViewController, creditCard: CreditCard) {
-      if let topViewController = getTopViewController() {
-        topViewController.dismiss(animated: true, completion: nil)
-      }
-
-      var resolvePayload: [String: Any] = [:]
-      resolvePayload["action"] = "scanned"
-      resolvePayload["payload"] = {
-        var payload: [String: Any] = [:]
-        payload["number"] = creditCard.number
-        payload["cardholderName"] = creditCard.name
-        payload["expiryMonth"] = creditCard.expiryMonth
-        payload["expiryYear"] = creditCard.expiryYear
-        payload["payloadVersion"] = "1"
-
-        if Bouncer.useLocalVerificationOnly {
-          payload["isCardValid"] = extraData["isCardValid"]
-          payload["cardValidationFailureReason"] = extraData["validationFailureReason"]
-        } else {
-          payload["verificationPayload"] = encryptedPayload
-        }
-        return payload
-      }()
-
-      if let resolve = self.resolve {
-        resolve(resolvePayload)
-      }
     }
 
     func userDidPressManualCardAdd(_ viewController: UIViewController) {
@@ -169,6 +143,35 @@ extension RNCardVerify: VerifyCardAddResult {
 
         if let resolve = resolve {
             resolve(["action": "skipped"])
+        }
+    }
+    
+    func fraudModelResultsVerifyCardAdd(viewController: UIViewController, creditCard: CreditCard, encryptedPayload: String?, extraData: [String: Any]) {
+        if let topViewController = getTopViewController() {
+            topViewController.dismiss(animated: true, completion: nil)
+        }
+        
+        var resolvePayload: [String: Any] = [:]
+        resolvePayload["action"] = "scanned"
+        resolvePayload["payload"] = {
+            var payload: [String: Any] = [:]
+            payload["number"] = creditCard.number
+            payload["cardholderName"] = creditCard.name
+            payload["expiryMonth"] = creditCard.expiryMonth
+            payload["expiryYear"] = creditCard.expiryYear
+            payload["payloadVersion"] = "1"
+            
+            if Bouncer.useLocalVerificationOnly {
+                payload["isCardValid"] = extraData["isCardValid"]
+                payload["cardValidationFailureReason"] = extraData["validationFailureReason"]
+            } else {
+                payload["verificationPayload"] = encryptedPayload
+            }
+            return payload
+        }()
+        
+        if let resolve = self.resolve {
+            resolve(resolvePayload)
         }
     }
 }
