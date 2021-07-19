@@ -13,7 +13,8 @@ import UIKit
 @objc(RNCardVerify)
 class RNCardVerify: NSObject {
     var resolve: RCTPromiseResolveBlock?
-
+    var styleDictionary: NSDictionary?
+    
     override init() {
         super.init()
     }
@@ -33,6 +34,10 @@ class RNCardVerify: NSObject {
         }
     }
 
+    @objc func setiOSVerifyViewStyle(_ styleDictionary: NSDictionary) {
+        self.styleDictionary = styleDictionary
+    }
+
     @objc func scan(
         _ requiredIin: NSString?,
         _ requiredLastFour: NSString?,
@@ -46,15 +51,19 @@ class RNCardVerify: NSObject {
         let topViewController = self.getTopViewController()
         
         if let lastFour = requiredLastFour as String? {
-          let vc = VerifyCardViewController(
+          let vc = CustomVerifyCardViewController(
             userId: "",
             lastFour: lastFour,
-            bin: requiredIin as String?
+            bin: requiredIin as String?,
+            viewStyle: self.styleDictionary
           )
           vc.verifyCardDelegate = self
           topViewController?.present(vc, animated: true, completion: nil)
         } else {
-          let vc = VerifyCardAddViewController(userId: "")
+          let vc = CustomVerifyCardAddViewController(
+            userId: "",
+            viewStyle: self.styleDictionary
+          )
           vc.cardAddDelegate = self
           topViewController?.present(vc, animated: true, completion: nil)
         }

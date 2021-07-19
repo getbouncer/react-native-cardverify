@@ -16,6 +16,20 @@ const StyledText = ({ color, bold, ...otherProps }) => (
   />
 );
 
+CardVerify.setiOSVerifyViewStyle({
+  'backgroundColor': '#FFC0CB',
+  'backgroundColorOpacity': 1.0,
+  'cornerRadius': 16.0,
+  'descriptionHeaderText': 'Scan Card',
+  'descriptionHeaderTextColor': '#FFF',
+  'descriptionHeaderTextSize': 40.0,
+  'enableCameraPermissionText': "Enable your camera permissions",
+  'enableCameraPermissionTextColor': '#000',
+  'manualCardEntryText': "Enter your card manually",
+  'manualCardEntryTextColor': '#000',
+  'torchPosition': 1
+})
+
 export default () => {
   const [compatible, setCompatible] = useState(null);
   const [card, setCard] = useState(null);

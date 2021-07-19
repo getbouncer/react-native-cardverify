@@ -3,42 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		96905EF65AED1B983A6B3ABC /* libPods-RNCardVerify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-RNCardVerify.a */; };
-		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		F388E0CD2696757100EA8B9D /* CardVerify.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F388E0CC2696757100EA8B9D /* CardVerify.xcframework */; };
-		F388E1F7269CCE9B00EA8B9D /* RNCardVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = F388E1F6269CCE9B00EA8B9D /* RNCardVerify.swift */; };
-		F388E1F9269CCEA900EA8B9D /* RNCardVerify.m in Sources */ = {isa = PBXBuildFile; fileRef = F388E1F8269CCEA900EA8B9D /* RNCardVerify.m */; };
+		F30C220D26A2591300349B41 /* RNCardVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C220A26A2591300349B41 /* RNCardVerify.swift */; };
+		F30C220E26A2591300349B41 /* RNCardVerify.m in Sources */ = {isa = PBXBuildFile; fileRef = F30C220B26A2591300349B41 /* RNCardVerify.m */; };
+		F30C221026A2592800349B41 /* CustomVerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C220F26A2592800349B41 /* CustomVerifyViewController.swift */; };
+		F30C221226A2593500349B41 /* CustomVerifyCardAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C221126A2593500349B41 /* CustomVerifyCardAddViewController.swift */; };
+		F30C221426A2596D00349B41 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C221326A2596D00349B41 /* UIColor+Hex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* RNCardVerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNCardVerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = RNCardVerify/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = RNCardVerify/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RNCardVerify/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RNCardVerify/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RNCardVerify/main.m; sourceTree = "<group>"; };
-		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-RNCardVerify.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCardVerify.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C2E3173556A471DD304B334 /* Pods-RNCardVerify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCardVerify.debug.xcconfig"; path = "Target Support Files/Pods-RNCardVerify/Pods-RNCardVerify.debug.xcconfig"; sourceTree = "<group>"; };
-		7A4D352CD337FB3A3BF06240 /* Pods-RNCardVerify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCardVerify.release.xcconfig"; path = "Target Support Files/Pods-RNCardVerify/Pods-RNCardVerify.release.xcconfig"; sourceTree = "<group>"; };
-		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = RNCardVerify/SplashScreen.storyboard; sourceTree = "<group>"; };
-		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F388E0CC2696757100EA8B9D /* CardVerify.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CardVerify.xcframework; path = Pods/CardVerify/CardVerify.xcframework; sourceTree = "<group>"; };
-		F388E1522696C40200EA8B9D /* RNCardVerify-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNCardVerify-Bridging-Header.h"; sourceTree = "<group>"; };
-		F388E1F6269CCE9B00EA8B9D /* RNCardVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNCardVerify.swift; sourceTree = "<group>"; };
-		F388E1F8269CCEA900EA8B9D /* RNCardVerify.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNCardVerify.m; sourceTree = "<group>"; };
+		F30C220A26A2591300349B41 /* RNCardVerify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNCardVerify.swift; sourceTree = "<group>"; };
+		F30C220B26A2591300349B41 /* RNCardVerify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCardVerify.m; sourceTree = "<group>"; };
+		F30C220C26A2591300349B41 /* RNCardVerify-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCardVerify-Bridging-Header.h"; sourceTree = "<group>"; };
+		F30C220F26A2592800349B41 /* CustomVerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVerifyViewController.swift; sourceTree = "<group>"; };
+		F30C221126A2593500349B41 /* CustomVerifyCardAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVerifyCardAddViewController.swift; sourceTree = "<group>"; };
+		F30C221326A2596D00349B41 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		F34AB6D826A6024A0045976E /* RNCardVerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNCardVerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,98 +29,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F388E0CD2696757100EA8B9D /* CardVerify.xcframework in Frameworks */,
-				96905EF65AED1B983A6B3ABC /* libPods-RNCardVerify.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13B07FAE1A68108700A75B9A /* RNCardVerify */ = {
-			isa = PBXGroup;
-			children = (
-				F388E0C32696701A00EA8B9D /* Source */,
-				BB2F792B24A3F905000567C9 /* Supporting */,
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
-				13B07FB71A68108700A75B9A /* main.m */,
-				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-			);
-			name = RNCardVerify;
-			sourceTree = "<group>";
-		};
-		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F388E0CC2696757100EA8B9D /* CardVerify.xcframework */,
-				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-RNCardVerify.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-		};
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* RNCardVerify */,
-				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				83CBBA001A601CBA00E9B192 /* Products */,
-				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				D65327D7A22EEC0BE12398D9 /* Pods */,
+				F30C221326A2596D00349B41 /* UIColor+Hex.swift */,
+				F30C221126A2593500349B41 /* CustomVerifyCardAddViewController.swift */,
+				F30C220F26A2592800349B41 /* CustomVerifyViewController.swift */,
+				F30C220C26A2591300349B41 /* RNCardVerify-Bridging-Header.h */,
+				F30C220B26A2591300349B41 /* RNCardVerify.m */,
+				F30C220A26A2591300349B41 /* RNCardVerify.swift */,
+				F34AB6D826A6024A0045976E /* RNCardVerify.app */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
 			tabWidth = 2;
 			usesTabs = 0;
-		};
-		83CBBA001A601CBA00E9B192 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				13B07F961A680F5B00A75B9A /* RNCardVerify.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		BB2F792B24A3F905000567C9 /* Supporting */ = {
-			isa = PBXGroup;
-			children = (
-				BB2F792C24A3F905000567C9 /* Expo.plist */,
-			);
-			name = Supporting;
-			path = RNCardVerify/Supporting;
-			sourceTree = "<group>";
-		};
-		D65327D7A22EEC0BE12398D9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6C2E3173556A471DD304B334 /* Pods-RNCardVerify.debug.xcconfig */,
-				7A4D352CD337FB3A3BF06240 /* Pods-RNCardVerify.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		F388E0C32696701A00EA8B9D /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				F388E1522696C40200EA8B9D /* RNCardVerify-Bridging-Header.h */,
-				F388E1F6269CCE9B00EA8B9D /* RNCardVerify.swift */,
-				F388E1F8269CCEA900EA8B9D /* RNCardVerify.m */,
-			);
-			path = Source;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -161,7 +73,7 @@
 			);
 			name = RNCardVerify;
 			productName = RNCardVerify;
-			productReference = 13B07F961A680F5B00A75B9A /* RNCardVerify.app */;
+			productReference = F34AB6D826A6024A0045976E /* RNCardVerify.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -173,6 +85,7 @@
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = Y28TH9SHX7;
 						LastSwiftMigration = 1250;
 					};
 				};
@@ -186,7 +99,7 @@
 				Base,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
-			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			productRefGroup = 83CBB9F61A601CBA00E9B192;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -200,10 +113,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,35 +217,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F388E1F7269CCE9B00EA8B9D /* RNCardVerify.swift in Sources */,
-				F388E1F9269CCEA900EA8B9D /* RNCardVerify.m in Sources */,
-				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				F30C221226A2593500349B41 /* CustomVerifyCardAddViewController.swift in Sources */,
+				F30C221026A2592800349B41 /* CustomVerifyViewController.swift in Sources */,
+				F30C220E26A2591300349B41 /* RNCardVerify.m in Sources */,
+				F30C220D26A2591300349B41 /* RNCardVerify.swift in Sources */,
+				F30C221426A2596D00349B41 /* UIColor+Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = RNCardVerify;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C2E3173556A471DD304B334 /* Pods-RNCardVerify.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y28TH9SHX7;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -344,10 +242,7 @@
 				);
 				INFOPLIST_FILE = RNCardVerify/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -364,17 +259,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A4D352CD337FB3A3BF06240 /* Pods-RNCardVerify.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y28TH9SHX7;
 				INFOPLIST_FILE = RNCardVerify/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -436,10 +328,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					/usr/lib/swift,
-					"$(inherited)",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = "\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -489,10 +378,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					/usr/lib/swift,
-					"$(inherited)",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = "\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
