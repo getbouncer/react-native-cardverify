@@ -1,7 +1,7 @@
 {
   "name": "react-native-cardverify",
   "title": "React Native CardVerify",
-  "version": "1.0.41",
+  "version": "1.0.42",
   "description": "This library provides payment card scanning and verification functionality for your react-native app.",
   "main": "index.js",
   "scripts": {
