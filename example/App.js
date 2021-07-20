@@ -16,6 +16,47 @@ const StyledText = ({ color, bold, ...otherProps }) => (
   />
 );
 
+CardVerify.setiOSVerifyViewStyle({
+  'backButtonTintColor': '#000',
+
+  'backgroundColor': '#FFC0CB',
+  'backgroundColorOpacity': 0.5,
+  
+  'cardDetailExpiryTextColor': '#FFF',
+  'cardDetailNameTextColor': '#FFF',
+  'cardDetailNumberTextColor': '#FFF',
+
+  'descriptionHeaderText': 'Scan Card',
+  'descriptionHeaderTextColor': '#FFF',
+  'descriptionHeaderTextFont': 'Avenir-Heavy',
+  'descriptionHeaderTextSize': 30.0,
+
+  'enableCameraPermissionText': "Enable your camera permissions",
+  'enableCameraPermissionTextColor': '#000',
+  'enableCameraPermissionTextFont': 'Avenir-LightOblique',
+  'enableCameraPermissionTextSize': 20.0,
+
+  'enableManualCardEntry': true,
+
+  'instructionText': 'Please center your card in the middle',
+  'instructionTextFont': 'Avenir-Light',
+  'instructionTextColor': '#00ff00',
+  'instructionTextSize': 20.0,
+
+  'manualCardEntryText': 'Enter your card manually',
+  'manualCardEntryTextColor': '#0000ff',
+  'manualCardEntryTextFont': 'Avenir-BookOblique',
+  'manualCardEntryTextSize': 25.0,
+
+  'roiBorderColor': '#ff0000',
+  'roiCornerRadius': 40.0,
+
+  'torchButtonTintColor': '#000',
+  'torchButtonPosition': 0,
+
+  'wrongCardText': 'This is the wrong card'
+})
+
 export default () => {
   const [compatible, setCompatible] = useState(null);
   const [card, setCard] = useState(null);
