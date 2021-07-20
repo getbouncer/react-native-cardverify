@@ -58,6 +58,8 @@ class RNCardVerifyViewController: VerifyCardViewController {
             instructionLabel.translatesAutoresizingMaskIntoConstraints = false
             instructionLabel.centerXAnchor.constraint(equalTo: roiView.centerXAnchor, constant: 0).isActive = true
             instructionLabel.topAnchor.constraint(equalTo: roiView.bottomAnchor, constant: 15).isActive = true
+            instructionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+            instructionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
         }
     }
     
