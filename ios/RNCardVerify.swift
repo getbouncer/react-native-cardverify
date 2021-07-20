@@ -51,7 +51,7 @@ class RNCardVerify: NSObject {
         let topViewController = self.getTopViewController()
         
         if let lastFour = requiredLastFour as String? {
-          let vc = CustomVerifyCardViewController(
+          let vc = RNCardVerifyViewController(
             userId: "",
             lastFour: lastFour,
             bin: requiredIin as String?,
@@ -60,7 +60,7 @@ class RNCardVerify: NSObject {
           vc.verifyCardDelegate = self
           topViewController?.present(vc, animated: true, completion: nil)
         } else {
-          let vc = CustomVerifyCardAddViewController(
+          let vc = RNCardVerifyAddViewController(
             userId: "",
             viewStyle: self.styleDictionary
           )

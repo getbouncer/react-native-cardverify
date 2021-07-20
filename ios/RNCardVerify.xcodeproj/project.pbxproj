@@ -9,18 +9,20 @@
 /* Begin PBXBuildFile section */
 		F30C220D26A2591300349B41 /* RNCardVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C220A26A2591300349B41 /* RNCardVerify.swift */; };
 		F30C220E26A2591300349B41 /* RNCardVerify.m in Sources */ = {isa = PBXBuildFile; fileRef = F30C220B26A2591300349B41 /* RNCardVerify.m */; };
-		F30C221026A2592800349B41 /* CustomVerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C220F26A2592800349B41 /* CustomVerifyViewController.swift */; };
-		F30C221226A2593500349B41 /* CustomVerifyCardAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C221126A2593500349B41 /* CustomVerifyCardAddViewController.swift */; };
+		F30C221026A2592800349B41 /* RNCardVerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C220F26A2592800349B41 /* RNCardVerifyViewController.swift */; };
+		F30C221226A2593500349B41 /* RNCardVerifyAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C221126A2593500349B41 /* RNCardVerifyAddViewController.swift */; };
 		F30C221426A2596D00349B41 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30C221326A2596D00349B41 /* UIColor+Hex.swift */; };
+		F3101B0826A7634200CAB676 /* RNCardVerifyStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3101B0726A7634200CAB676 /* RNCardVerifyStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F30C220A26A2591300349B41 /* RNCardVerify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNCardVerify.swift; sourceTree = "<group>"; };
 		F30C220B26A2591300349B41 /* RNCardVerify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCardVerify.m; sourceTree = "<group>"; };
 		F30C220C26A2591300349B41 /* RNCardVerify-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCardVerify-Bridging-Header.h"; sourceTree = "<group>"; };
-		F30C220F26A2592800349B41 /* CustomVerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVerifyViewController.swift; sourceTree = "<group>"; };
-		F30C221126A2593500349B41 /* CustomVerifyCardAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVerifyCardAddViewController.swift; sourceTree = "<group>"; };
+		F30C220F26A2592800349B41 /* RNCardVerifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNCardVerifyViewController.swift; sourceTree = "<group>"; };
+		F30C221126A2593500349B41 /* RNCardVerifyAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNCardVerifyAddViewController.swift; sourceTree = "<group>"; };
 		F30C221326A2596D00349B41 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		F3101B0726A7634200CAB676 /* RNCardVerifyStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNCardVerifyStyle.swift; sourceTree = "<group>"; };
 		F34AB6D826A6024A0045976E /* RNCardVerify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNCardVerify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -38,9 +40,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				F3101B0726A7634200CAB676 /* RNCardVerifyStyle.swift */,
 				F30C221326A2596D00349B41 /* UIColor+Hex.swift */,
-				F30C221126A2593500349B41 /* CustomVerifyCardAddViewController.swift */,
-				F30C220F26A2592800349B41 /* CustomVerifyViewController.swift */,
+				F30C221126A2593500349B41 /* RNCardVerifyAddViewController.swift */,
+				F30C220F26A2592800349B41 /* RNCardVerifyViewController.swift */,
 				F30C220C26A2591300349B41 /* RNCardVerify-Bridging-Header.h */,
 				F30C220B26A2591300349B41 /* RNCardVerify.m */,
 				F30C220A26A2591300349B41 /* RNCardVerify.swift */,
@@ -217,8 +220,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F30C221226A2593500349B41 /* CustomVerifyCardAddViewController.swift in Sources */,
-				F30C221026A2592800349B41 /* CustomVerifyViewController.swift in Sources */,
+				F30C221226A2593500349B41 /* RNCardVerifyAddViewController.swift in Sources */,
+				F30C221026A2592800349B41 /* RNCardVerifyViewController.swift in Sources */,
+				F3101B0826A7634200CAB676 /* RNCardVerifyStyle.swift in Sources */,
 				F30C220E26A2591300349B41 /* RNCardVerify.m in Sources */,
 				F30C220D26A2591300349B41 /* RNCardVerify.swift in Sources */,
 				F30C221426A2596D00349B41 /* UIColor+Hex.swift in Sources */,
