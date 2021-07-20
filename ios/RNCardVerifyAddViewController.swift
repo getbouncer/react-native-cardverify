@@ -192,17 +192,16 @@ class RNCardVerifyAddViewController: VerifyCardAddViewController {
         let attributedString = NSMutableAttributedString(string: text)
         enableCameraPermissionsText.text = text
         
-        if let textColor = verifyStyle.enableCameraPermissionTextColor {
-            attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(hexString: textColor), range: NSRange(location: 0, length: text.count))
-            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: textColor), range: NSRange(location: 0, length: text.count))
-            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: text.count))
-            enableCameraPermissionsText.textColor = UIColor(hexString: textColor)
-        }
+        let textColor = UIColor(hexString: verifyStyle.enableCameraPermissionTextColor ?? "#FFFFFF")
+        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: textColor, range: NSRange(location: 0, length: text.count))
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: textColor, range: NSRange(location: 0, length: text.count))
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: text.count))
+        enableCameraPermissionsText.textColor = textColor
         
-        var font: UIFont? = UIFont.systemFont(ofSize: 15)
+        var font: UIFont? = UIFont.systemFont(ofSize: 20)
         
         if let enableCameraPermissionFont = verifyStyle.enableCameraPermissionTextFont {
-            font = UIFont(name: enableCameraPermissionFont, size: 15)
+            font = UIFont(name: enableCameraPermissionFont, size: 20)
         }
         
         if let fontSize = verifyStyle.enableCameraPermissionTextSize {
@@ -221,16 +220,15 @@ class RNCardVerifyAddViewController: VerifyCardAddViewController {
         let text = verifyStyle.manualCardEntryText ?? RNCardVerifyAddViewController.manualCardEntryText
         let attributedString = NSMutableAttributedString(string: text)
         
-        if let textColor = verifyStyle.manualCardEntryTextColor {
-            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: text.count))
-            attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: UIColor(hexString: textColor), range: NSRange(location: 0, length: text.count))
-            attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexString: textColor), range: NSRange(location: 0, length: text.count))
-        }
+        let textColor = UIColor(hexString: verifyStyle.manualCardEntryTextColor ?? "#FFFFFF")
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: text.count))
+        attributedString.addAttribute(NSAttributedString.Key.underlineColor, value: textColor, range: NSRange(location: 0, length: text.count))
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: textColor, range: NSRange(location: 0, length: text.count))
         
-        var font: UIFont? = UIFont.systemFont(ofSize: 15)
+        var font: UIFont? = UIFont.systemFont(ofSize: 20)
         
         if let manualCardEntryFont = verifyStyle.manualCardEntryTextFont {
-            font = UIFont(name: manualCardEntryFont, size: 15)
+            font = UIFont(name: manualCardEntryFont, size: 20)
         }
         
         if let manualCardEntryFontsize = verifyStyle.manualCardEntryTextSize {
