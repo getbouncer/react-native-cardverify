@@ -25,7 +25,7 @@
     "jsc-android": "^241213.1.0",
     "react": "^17.0.1",
     "react-native": "^0.64.0",
-    "react-native-cardverify": "file:react-native-cardverify-1.0.43.tgz",
+    "react-native-cardverify": "file:react-native-cardverify-1.0.44.tgz",
     "react-native-credit-card-input-view": "^0.0.6"
   },
   "devDependencies": {
