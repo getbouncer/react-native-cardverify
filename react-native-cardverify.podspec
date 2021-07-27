@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/getbouncer/react-native-cardverify"
   s.license      = "MIT"
   s.authors      = { "Stefano Suryanto, Adam Wushensky, Jaime Park" => "support@getbouncer.com" }
-  s.platforms    = { :ios => "11.2", :tvos => "10.0" }
+  s.platforms    = { :ios => "11.0" }
   s.source       = { :git => "https://github.com/getbouncer/react-native-cardverify.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,swift}"
