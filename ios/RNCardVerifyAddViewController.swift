@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: Custom Verify
+@available(iOS 11.2, *)
 class RNCardVerifyAddViewController: VerifyCardAddViewController {
     var verifyStyle = RNCardVerifyViewStyle()
     lazy var instructionLabel = UILabel()
