@@ -1,10 +1,16 @@
 # Changelog
 
+## [1.0.46](https://github.com/getbouncer/react-native-cardverify/tree/1.0.46) (2021-09-10)
+
+**Merged pull requests:**
+
+- Fix the topViewController logic when multiple viewControllers [\#61](https://github.com/getbouncer/react-native-cardverify/pull/61) ([kingst-stripe](https://github.com/kingst-stripe))
+
 ## [1.0.45](https://github.com/getbouncer/react-native-cardverify/tree/1.0.45) (2021-08-09)
 
 **Merged pull requests:**
 
-- Upgrade android version [\#60](https://github.com/getbouncer/react-native-cardverify/pull/60) ([awushensky-stripe](https://github.com/awushensky-stripe))
+- Upgrade android version [\#60](https://github.com/getbouncer/react-native-cardverify/pull/60) ([awush-stripe](https://github.com/awush-stripe))
 - Update CODEOWNERS [\#59](https://github.com/getbouncer/react-native-cardverify/pull/59) ([jaimepark-stripe](https://github.com/jaimepark-stripe))
 
 ## [1.0.44](https://github.com/getbouncer/react-native-cardverify/tree/1.0.44) (2021-07-27)
@@ -12,6 +18,7 @@
 **Merged pull requests:**
 
 - Downgrade to ios11.0 [\#58](https://github.com/getbouncer/react-native-cardverify/pull/58) ([jaimepark-stripe](https://github.com/jaimepark-stripe))
+- Update cardverify with button fix [\#52](https://github.com/getbouncer/react-native-cardverify/pull/52) ([jaimejiyepark](https://github.com/jaimejiyepark))
 
 ## [1.0.43](https://github.com/getbouncer/react-native-cardverify/tree/1.0.43) (2021-07-26)
 
@@ -29,14 +36,13 @@
 
 **Merged pull requests:**
 
-- Update dependencies [\#54](https://github.com/getbouncer/react-native-cardverify/pull/54) ([awushensky-stripe](https://github.com/awushensky-stripe))
+- Update dependencies [\#54](https://github.com/getbouncer/react-native-cardverify/pull/54) ([awush-stripe](https://github.com/awush-stripe))
 
 ## [1.0.40](https://github.com/getbouncer/react-native-cardverify/tree/1.0.40) (2021-05-27)
 
 **Merged pull requests:**
 
-- Upgrade android [\#53](https://github.com/getbouncer/react-native-cardverify/pull/53) ([awushensky-stripe](https://github.com/awushensky-stripe))
-- Update cardverify with button fix [\#52](https://github.com/getbouncer/react-native-cardverify/pull/52) ([jaimejiyepark](https://github.com/jaimejiyepark))
+- Upgrade android [\#53](https://github.com/getbouncer/react-native-cardverify/pull/53) ([awush-stripe](https://github.com/awush-stripe))
 
 ## [1.0.39](https://github.com/getbouncer/react-native-cardverify/tree/1.0.39) (2021-05-15)
 
@@ -78,6 +84,7 @@
 - Update project to accommodate CardVerify 2.0.10 [\#38](https://github.com/getbouncer/react-native-cardverify/pull/38) ([jaimejiyepark](https://github.com/jaimejiyepark))
 - Update version for iOS release [\#36](https://github.com/getbouncer/react-native-cardverify/pull/36) ([awushensky](https://github.com/awushensky))
 - Use new CardVerify 2.0.7 and update example r [\#35](https://github.com/getbouncer/react-native-cardverify/pull/35) ([jaimejiyepark](https://github.com/jaimejiyepark))
+- Allow skip verification on model download failure [\#34](https://github.com/getbouncer/react-native-cardverify/pull/34) ([awushensky](https://github.com/awushensky))
 - Use xcframeworks [\#33](https://github.com/getbouncer/react-native-cardverify/pull/33) ([awushensky](https://github.com/awushensky))
 
 ## [1.0.24](https://github.com/getbouncer/react-native-cardverify/tree/1.0.24) (2020-12-04)
@@ -90,7 +97,6 @@
 
 **Merged pull requests:**
 
-- Allow skip verification on model download failure [\#34](https://github.com/getbouncer/react-native-cardverify/pull/34) ([awushensky](https://github.com/awushensky))
 - Bump version to 1.0.23 [\#31](https://github.com/getbouncer/react-native-cardverify/pull/31) ([awushensky](https://github.com/awushensky))
 - Added curly brace [\#30](https://github.com/getbouncer/react-native-cardverify/pull/30) ([jaimejiyepark](https://github.com/jaimejiyepark))
 
