@@ -71,13 +71,15 @@ class RNCardVerify: NSObject {
     }
     
     func getTopViewController() -> UIViewController? {
-        var topViewController = UIApplication.shared.keyWindow?.rootViewController
-        
-        while (topViewController?.presentingViewController != nil) {
-            topViewController = topViewController?.presentedViewController
-        }
+      guard var topViewController = UIApplication.shared.keyWindow?.rootViewController else {
+        return nil
+      }
 
-        return topViewController
+      while let nextViewController = topViewController.presentedViewController {
+        topViewController = nextViewController
+      }
+
+      return topViewController
     }
 }
 
