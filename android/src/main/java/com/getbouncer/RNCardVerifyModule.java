@@ -35,9 +35,9 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     @Override
     public void initialize() {
         if (useLocalVerificationOnly) {
-            com.getbouncer.cardverify.ui.local.CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction);
+            com.getbouncer.cardverify.ui.local.CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
         } else {
-            CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction);
+            CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
         }
     }
 
