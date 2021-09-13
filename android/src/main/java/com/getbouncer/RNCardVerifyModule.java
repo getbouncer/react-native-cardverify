@@ -36,15 +36,7 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     @Override
     public void initialize() {
         if (!deferModelDownloads) {
-            warmUp();
-        }
-    }
-
-    private static void warmUp() {
-        if (useLocalVerificationOnly) {
-            com.getbouncer.cardverify.ui.local.CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
-        } else {
-            CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
+            downloadModels();
         }
     }
 
@@ -315,7 +307,11 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void downloadModels() {
-        RNCardVerifyModule.warmUp();
+        if (useLocalVerificationOnly) {
+            com.getbouncer.cardverify.ui.local.CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
+        } else {
+            CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
+        }
     }
 
     @ReactMethod
