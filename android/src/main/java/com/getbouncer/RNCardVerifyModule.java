@@ -314,7 +314,7 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void warmUp() {
+    public void downloadModels() {
         RNCardVerifyModule.warmUp();
     }
 
