@@ -128,28 +128,30 @@ class RNCardVerifyAddViewController: VerifyCardAddViewController {
     // MARK: -- Close UI --
     override public func setupCloseButtonUi() {
         super.setupCloseButtonUi()
-        closeButton.setTitle("", for: .normal)
-        
+        if let backButtonText = verifyStyle.backButtonText {
+            closeButton.setTitle(backButtonText, for: .normal)
+        } else if let backArrowImage = UIImage(named: "bouncer_verify_back") {
+            closeButton.setTitle("", for: .normal)
+            closeButton.setImage(backArrowImage, for: .normal)
+        }
+                
         if let backButtonTintColor = verifyStyle.backButtonTintColor {
             closeButton.tintColor = UIColor(hexString: backButtonTintColor)
-        }
-        
-        if let backArrowImage = UIImage(named: "bouncer_verify_back") {
-            closeButton.setImage(backArrowImage, for: .normal)
         }
     }
 
     // MARK: -- Torch UI --
     override public func setupTorchButtonUi() {
         super.setupTorchButtonUi()
-        torchButton.setTitle("", for: .normal)
+        if let torchButtonText = verifyStyle.torchButtonText {
+            torchButton.setTitle(torchButtonText, for: .normal)
+        } else if let torchImage = UIImage(named: "bouncer_verify_flash_on") {
+            torchButton.setTitle("", for: .normal)
+            torchButton.setImage(torchImage, for: .normal)
+        }
         
         if let torchButtonTintColor = verifyStyle.torchButtonTintColor {
             torchButton.tintColor = UIColor(hexString: torchButtonTintColor)
-        }
-        
-        if let torchImage = UIImage(named: "bouncer_verify_flash_on") {
-            torchButton.setImage(torchImage, for: .normal)
         }
     }
 
