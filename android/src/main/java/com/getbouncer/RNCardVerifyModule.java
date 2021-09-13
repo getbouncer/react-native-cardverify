@@ -27,6 +27,7 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     public static boolean enableExpiryExtraction = true;
     public static boolean enableNameExtraction = true;
     public static boolean useLocalVerificationOnly = false;
+    public static boolean deferModelDownloads = false;
 
     private final ReactApplicationContext reactContext;
 
@@ -34,6 +35,12 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
 
     @Override
     public void initialize() {
+        if (!deferModelDownloads) {
+            warmUp();
+        }
+    }
+
+    private static void warmUp() {
         if (useLocalVerificationOnly) {
             com.getbouncer.cardverify.ui.local.CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
         } else {
@@ -304,6 +311,11 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void isSupportedAsync(Promise promise) {
         promise.resolve(true);
+    }
+
+    @ReactMethod
+    public void warmUp() {
+        RNCardVerifyModule.warmUp();
     }
 
     @ReactMethod
