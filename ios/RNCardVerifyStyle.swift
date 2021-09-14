@@ -14,6 +14,7 @@ public enum TorchPosition: Int {
 
 public struct RNCardVerifyViewStyle: Decodable {
   var backButtonTintColor: String?
+  var backButtonText: String?
   
   var backgroundColor: String?
   var backgroundColorOpacity: CGFloat?
@@ -49,6 +50,7 @@ public struct RNCardVerifyViewStyle: Decodable {
   
   var torchButtonTintColor: String?
   var torchButtonPosition: Int?
+  var torchButtonText: String?
   
   var wrongCardText: String?
 }

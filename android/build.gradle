@@ -79,7 +79,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.facebook.react:react-native:+'  // From node_modules
 
-    implementation "com.getbouncer:cardverify-ui:2.1.0009"
+    implementation "com.getbouncer:cardverify-ui:2.1.0011"
 }
 
 def configureReactNativePom(def pom) {
