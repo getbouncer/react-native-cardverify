@@ -64,8 +64,12 @@ export default () => {
   const [card, setCard] = useState(null);
   const [recentAction, setRecentAction] = useState('none');
 
+  const downloadModels = useCallback(async () => {
+    CardVerify.downloadModels();
+  }, []);
+
   const scanCard = useCallback(async () => {
-    const { action, scanId, payload, canceledReason } = await CardVerify.scan(null, null, true);
+    const { action, scanId, payload, canceledReason } = await CardVerify.scan(null, null, false);
     setRecentAction(action);
     if (action === 'scanned') {
       var issuer = payload.issuer || '??';
@@ -137,6 +141,11 @@ export default () => {
       </StyledText>
       {compatible &&
         <StyledText>Recent action: {recentAction}</StyledText>
+      }
+      {compatible &&
+        <TouchableOpacity onPress={downloadModels}>
+          <StyledText bold>Download Models</StyledText>
+        </TouchableOpacity>
       }
       {compatible &&
         <TouchableOpacity onPress={scanCard}>
