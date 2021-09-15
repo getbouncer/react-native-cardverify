@@ -17,4 +17,5 @@ RCT_EXTERN_METHOD(scan:(NSString * _Nullable)requiredIin
                   :(RCTPromiseResolveBlock)resolve
                   :(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(setiOSVerifyViewStyle:(NSDictionary)styleDictionary)
+RCT_EXTERN_METHOD(downloadModels)
 @end
