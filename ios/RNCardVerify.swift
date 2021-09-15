@@ -38,6 +38,10 @@ class RNCardVerify: NSObject {
         self.styleDictionary = styleDictionary
     }
 
+    @objc func downloadModels() {
+        Bouncer.downloadModelsIfNotCached()
+    }
+    
     @objc func scan(
         _ requiredIin: NSString?,
         _ requiredLastFour: NSString?,

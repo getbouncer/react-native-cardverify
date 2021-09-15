@@ -29,6 +29,8 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  // If you want to defer model downloads use this property before calling `configure`
+  // Bouncer.downloadModels = false;
   [Bouncer configureWithApiKey:@"ENTER_API_KEY"];
   
   return YES;
