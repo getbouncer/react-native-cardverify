@@ -18,6 +18,9 @@ import com.getbouncer.scan.payment.card.PaymentCardUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
+
 public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     private static final int SCAN_REQUEST_CODE = 51235;
 
@@ -32,11 +35,13 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     private final ReactApplicationContext reactContext;
 
     private Promise scanPromise;
+    private Promise modelsDownloadPromise;
+    private boolean modelsDownloaded = false;
 
     @Override
     public void initialize() {
         if (!deferModelDownloads) {
-            downloadModels();
+            downloadModels(null);
         }
     }
 
@@ -306,11 +311,44 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void downloadModels() {
-        if (useLocalVerificationOnly) {
-            com.getbouncer.cardverify.ui.local.CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
+    public void awaitReady(@NotNull final Promise promise) {
+        if (modelsDownloaded) {
+            promise.resolve(true);
         } else {
-            CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
+            modelsDownloadPromise = promise;
+        }
+    }
+
+    @ReactMethod
+    public void downloadModels(@Nullable final Promise promise) {
+        if (useLocalVerificationOnly) {
+            com.getbouncer.cardverify.ui.local.CardVerifyActivity.prepareScan(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false, new Function0<Unit>() {
+                @Override
+                public Unit invoke() {
+                    modelsDownloaded = true;
+                    if (promise != null) {
+                        promise.resolve(true);
+                    }
+                    if (modelsDownloadPromise != null) {
+                        modelsDownloadPromise.resolve(true);
+                    }
+                    return Unit.INSTANCE;
+                }
+            });
+        } else {
+            CardVerifyActivity.prepareScan(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false, new Function0<Unit>() {
+                @Override
+                public Unit invoke() {
+                    modelsDownloaded = true;
+                    if (promise != null) {
+                        promise.resolve(true);
+                    }
+                    if (modelsDownloadPromise != null) {
+                        modelsDownloadPromise.resolve(true);
+                    }
+                    return Unit.INSTANCE;
+                }
+            });
         }
     }
 
