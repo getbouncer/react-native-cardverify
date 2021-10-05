@@ -8,6 +8,7 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.UiThreadUtil;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.getbouncer.cardverify.ui.network.CardVerifyActivity;
@@ -312,11 +313,17 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void awaitReady(@NotNull final Promise promise) {
-        if (modelsDownloaded) {
-            promise.resolve(true);
-        } else {
-            modelsDownloadPromise = promise;
-        }
+        // Force this to the UI thread to avoid a race condition with [handleModelsDownloaded]
+        UiThreadUtil.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (modelsDownloaded) {
+                    promise.resolve(true);
+                } else {
+                    modelsDownloadPromise = promise;
+                }
+            }
+        });
     }
 
     @ReactMethod
@@ -325,13 +332,7 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
             com.getbouncer.cardverify.ui.local.CardVerifyActivity.prepareScan(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false, new Function0<Unit>() {
                 @Override
                 public Unit invoke() {
-                    modelsDownloaded = true;
-                    if (promise != null) {
-                        promise.resolve(true);
-                    }
-                    if (modelsDownloadPromise != null) {
-                        modelsDownloadPromise.resolve(true);
-                    }
+                    handleModelsDownloaded(promise);
                     return Unit.INSTANCE;
                 }
             });
@@ -339,17 +340,27 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
             CardVerifyActivity.prepareScan(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false, new Function0<Unit>() {
                 @Override
                 public Unit invoke() {
-                    modelsDownloaded = true;
-                    if (promise != null) {
-                        promise.resolve(true);
-                    }
-                    if (modelsDownloadPromise != null) {
-                        modelsDownloadPromise.resolve(true);
-                    }
+                    handleModelsDownloaded(promise);
                     return Unit.INSTANCE;
                 }
             });
         }
+    }
+
+    private void handleModelsDownloaded(@Nullable final Promise promise) {
+        // Force this to the UI thread to avoid a race condition with [awaitReady]
+        UiThreadUtil.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                modelsDownloaded = true;
+                if (promise != null) {
+                    promise.resolve(true);
+                }
+                if (modelsDownloadPromise != null) {
+                    modelsDownloadPromise.resolve(true);
+                }
+            }
+        });
     }
 
     @ReactMethod

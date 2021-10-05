@@ -65,7 +65,7 @@ export default () => {
   const [recentAction, setRecentAction] = useState('none');
 
   const downloadModels = useCallback(async () => {
-    CardVerify.downloadModels();
+    alert(await CardVerify.downloadModels());
   }, []);
 
   const scanCard = useCallback(async () => {
