@@ -22,7 +22,14 @@ class RNCardVerify: NSObject {
     @objc class func requiresMainQueueSetup() -> Bool {
         return true
     }
-    
+
+    @objc func awaitReady(
+        _ resolve: RCTPromiseResolveBlock,
+        _ reject: RCTPromiseRejectBlock
+    ) -> Void {
+        resolve([true])
+    }
+
     @objc func isSupportedAsync(
         _ resolve: RCTPromiseResolveBlock,
         _ reject: RCTPromiseRejectBlock
