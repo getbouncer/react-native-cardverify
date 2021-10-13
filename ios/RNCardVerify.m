@@ -11,6 +11,8 @@
 @interface RCT_EXTERN_MODULE(RNCardVerify, NSObject)
 RCT_EXTERN_METHOD(isSupportedAsync:(RCTPromiseResolveBlock)resolve
                   :(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(awaitReady:(RCTPromiseResolveBlock)resolve
+                  :(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(scan:(NSString * _Nullable)requiredIin
                   :(NSString * _Nullable)requiredLastFour
                   :(BOOL)skipVerificationOnModelDownloadFailure
