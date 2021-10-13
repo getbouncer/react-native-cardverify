@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.49](https://github.com/getbouncer/react-native-cardverify/tree/1.0.49) (2021-10-13)
+
+**Merged pull requests:**
+
+- Ready call for iOS [\#66](https://github.com/getbouncer/react-native-cardverify/pull/66) ([kingst-stripe](https://github.com/kingst-stripe))
+- Callback on models downloaded on Android [\#65](https://github.com/getbouncer/react-native-cardverify/pull/65) ([awush-stripe](https://github.com/awush-stripe))
+
 ## [1.0.48](https://github.com/getbouncer/react-native-cardverify/tree/1.0.48) (2021-09-25)
 
 **Merged pull requests:**
@@ -12,10 +19,13 @@
 
 - Expose the `downloadModels` method from the iOS plugin [\#63](https://github.com/getbouncer/react-native-cardverify/pull/63) ([kingst-stripe](https://github.com/kingst-stripe))
 - Add deferred model downloads to android [\#62](https://github.com/getbouncer/react-native-cardverify/pull/62) ([awush-stripe](https://github.com/awush-stripe))
-- Fix the topViewController logic when multiple viewControllers [\#61](https://github.com/getbouncer/react-native-cardverify/pull/61) ([kingst-stripe](https://github.com/kingst-stripe))
 - Resolve build issues on Xcode 12+ when use\_frameworks is enabled [\#55](https://github.com/getbouncer/react-native-cardverify/pull/55) ([fuller](https://github.com/fuller))
 
 ## [1.0.46](https://github.com/getbouncer/react-native-cardverify/tree/1.0.46) (2021-09-10)
+
+**Merged pull requests:**
+
+- Fix the topViewController logic when multiple viewControllers [\#61](https://github.com/getbouncer/react-native-cardverify/pull/61) ([kingst-stripe](https://github.com/kingst-stripe))
 
 ## [1.0.45](https://github.com/getbouncer/react-native-cardverify/tree/1.0.45) (2021-08-09)
 
@@ -53,20 +63,17 @@
 **Merged pull requests:**
 
 - Upgrade android [\#53](https://github.com/getbouncer/react-native-cardverify/pull/53) ([awush-stripe](https://github.com/awush-stripe))
+- Update cardverify with button fix [\#52](https://github.com/getbouncer/react-native-cardverify/pull/52) ([jaimejiyepark](https://github.com/jaimejiyepark))
+- Upgrade android version [\#49](https://github.com/getbouncer/react-native-cardverify/pull/49) ([awushensky](https://github.com/awushensky))
 
 ## [1.0.39](https://github.com/getbouncer/react-native-cardverify/tree/1.0.39) (2021-05-15)
 
 **Merged pull requests:**
 
-- Update cardverify with button fix [\#52](https://github.com/getbouncer/react-native-cardverify/pull/52) ([jaimejiyepark](https://github.com/jaimejiyepark))
 - Update example to add custom buttons [\#51](https://github.com/getbouncer/react-native-cardverify/pull/51) ([jaimejiyepark](https://github.com/jaimejiyepark))
 - Fix unit tests [\#50](https://github.com/getbouncer/react-native-cardverify/pull/50) ([awushensky](https://github.com/awushensky))
 
 ## [1.0.38](https://github.com/getbouncer/react-native-cardverify/tree/1.0.38) (2021-04-22)
-
-**Merged pull requests:**
-
-- Upgrade android version [\#49](https://github.com/getbouncer/react-native-cardverify/pull/49) ([awushensky](https://github.com/awushensky))
 
 ## [1.0.37](https://github.com/getbouncer/react-native-cardverify/tree/1.0.37) (2021-04-16)
 
