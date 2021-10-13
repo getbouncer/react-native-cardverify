@@ -8,6 +8,7 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.UiThreadUtil;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.getbouncer.cardverify.ui.network.CardVerifyActivity;
@@ -17,6 +18,9 @@ import com.getbouncer.scan.payment.card.PaymentCardUtils;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 
 public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     private static final int SCAN_REQUEST_CODE = 51235;
@@ -32,11 +36,13 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     private final ReactApplicationContext reactContext;
 
     private Promise scanPromise;
+    private Promise modelsDownloadPromise;
+    private boolean modelsDownloaded = false;
 
     @Override
     public void initialize() {
         if (!deferModelDownloads) {
-            downloadModels();
+            downloadModels(null);
         }
     }
 
@@ -306,12 +312,55 @@ public class RNCardVerifyModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void downloadModels() {
+    public void awaitReady(@NotNull final Promise promise) {
+        // Force this to the UI thread to avoid a race condition with [handleModelsDownloaded]
+        UiThreadUtil.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (modelsDownloaded) {
+                    promise.resolve(true);
+                } else {
+                    modelsDownloadPromise = promise;
+                }
+            }
+        });
+    }
+
+    @ReactMethod
+    public void downloadModels(@Nullable final Promise promise) {
         if (useLocalVerificationOnly) {
-            com.getbouncer.cardverify.ui.local.CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
+            com.getbouncer.cardverify.ui.local.CardVerifyActivity.prepareScan(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false, new Function0<Unit>() {
+                @Override
+                public Unit invoke() {
+                    handleModelsDownloaded(promise);
+                    return Unit.INSTANCE;
+                }
+            });
         } else {
-            CardVerifyActivity.warmUp(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false);
+            CardVerifyActivity.prepareScan(this.reactContext.getApplicationContext(), apiKey, enableExpiryExtraction || enableNameExtraction, false, new Function0<Unit>() {
+                @Override
+                public Unit invoke() {
+                    handleModelsDownloaded(promise);
+                    return Unit.INSTANCE;
+                }
+            });
         }
+    }
+
+    private void handleModelsDownloaded(@Nullable final Promise promise) {
+        // Force this to the UI thread to avoid a race condition with [awaitReady]
+        UiThreadUtil.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                modelsDownloaded = true;
+                if (promise != null) {
+                    promise.resolve(true);
+                }
+                if (modelsDownloadPromise != null) {
+                    modelsDownloadPromise.resolve(true);
+                }
+            }
+        });
     }
 
     @ReactMethod
