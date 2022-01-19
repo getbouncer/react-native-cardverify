@@ -167,7 +167,7 @@ extension RNCardVerify: VerifyCardAddResult {
             resolve(["action": "skipped"])
         }
 
-        resolve = nil;
+        resolve = nil
     }
     
     func fraudModelResultsVerifyCardAdd(viewController: UIViewController, creditCard: CreditCard, encryptedPayload: String?, extraData: [String: Any]) {
