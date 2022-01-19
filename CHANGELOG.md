@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.50](https://github.com/getbouncer/react-native-cardverify/tree/1.0.50) (2022-01-19)
+
+**Merged pull requests:**
+
+- Support multiple invocations of enter manually [\#67](https://github.com/getbouncer/react-native-cardverify/pull/67) ([awush-stripe](https://github.com/awush-stripe))
+
 ## [1.0.49](https://github.com/getbouncer/react-native-cardverify/tree/1.0.49) (2021-10-13)
 
 **Merged pull requests:**
@@ -57,14 +63,13 @@
 **Merged pull requests:**
 
 - Update dependencies [\#54](https://github.com/getbouncer/react-native-cardverify/pull/54) ([awush-stripe](https://github.com/awush-stripe))
+- Update cardverify with button fix [\#52](https://github.com/getbouncer/react-native-cardverify/pull/52) ([jaimejiyepark](https://github.com/jaimejiyepark))
 
 ## [1.0.40](https://github.com/getbouncer/react-native-cardverify/tree/1.0.40) (2021-05-27)
 
 **Merged pull requests:**
 
 - Upgrade android [\#53](https://github.com/getbouncer/react-native-cardverify/pull/53) ([awush-stripe](https://github.com/awush-stripe))
-- Update cardverify with button fix [\#52](https://github.com/getbouncer/react-native-cardverify/pull/52) ([jaimejiyepark](https://github.com/jaimejiyepark))
-- Upgrade android version [\#49](https://github.com/getbouncer/react-native-cardverify/pull/49) ([awushensky](https://github.com/awushensky))
 
 ## [1.0.39](https://github.com/getbouncer/react-native-cardverify/tree/1.0.39) (2021-05-15)
 
@@ -74,6 +79,10 @@
 - Fix unit tests [\#50](https://github.com/getbouncer/react-native-cardverify/pull/50) ([awushensky](https://github.com/awushensky))
 
 ## [1.0.38](https://github.com/getbouncer/react-native-cardverify/tree/1.0.38) (2021-04-22)
+
+**Merged pull requests:**
+
+- Upgrade android version [\#49](https://github.com/getbouncer/react-native-cardverify/pull/49) ([awushensky](https://github.com/awushensky))
 
 ## [1.0.37](https://github.com/getbouncer/react-native-cardverify/tree/1.0.37) (2021-04-16)
 
